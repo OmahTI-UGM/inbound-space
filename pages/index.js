@@ -52,7 +52,7 @@ const Notifier = ({text, position}) => {
           font-size: 16px;
           line-height: 19px;
 
-          color: #484F93;
+          color: #6E75B7;
         }
         .notif-svg{
           margin-left: 4px;

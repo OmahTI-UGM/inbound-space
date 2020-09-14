@@ -15,3 +15,28 @@ a {
 * {
   box-sizing: border-box;
 }
+
+@font-face {
+  font-family: "Poppkorn";
+  src: url("/typefaces/PoppkornRegular-MzKY.ttf");
+}
+@font-face {
+  font-family: "Exo2-reg";
+  src: url("/typefaces/Exo2-Regular.otf");
+}
+@font-face {
+  font-family: "Exo2-eb";
+  src: url("/typefaces/Exo2-ExtraBold.otf");
+}
+@font-face {
+  font-family: "Exo2-lit";
+  src: url("/typefaces/Exo2-Light.otf");
+}
+@font-face {
+  font-family: "Exo2-med";
+  src: url("/typefaces/Exo2-Medium.otf");
+}
+@font-face {
+  font-family: "Exo2-el";
+  src: url("/typefaces/Exo2-ExtraLight.otf");
+}

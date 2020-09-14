@@ -1,35 +1,66 @@
 import Head from 'next/head'
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Styled from '@emotion/styled'
 import LayoutNav from '../components/layouts/Nav'
 import Link from 'next/link'
   
 const Index = () => {
+  const { x, y, orix, oriy } = useMousePosition();
+  const hasMovedCursor = typeof x === "number" && typeof y === "number";
+
+
   return (
       <Backlayer>
         <Head>
           <title>Inbound 2020</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <Wrapper>
+        <Wrapper className="homepage-bg" x={x} y={y}>
           <div className="upper">
-            <h4>WELCOME TO</h4>
+            <h4>WELCOME TO {x + " " + y + " " + orix + " " + oriy}</h4>
             <h2>2020 inbound</h2>
             <h1>SPACE <br/> PROGRAM</h1>
           </div>
           <div className="lower">
             <Notifier text="Siap untuk menjalankan misinya? simak kisahnya dahulu..." position={1} />
             <div className="fourbtn">
-              <Link href="/story"><button style={{backgroundImage: "url('/img/fourbtn/story.svg')"}}>STORY</button></Link >
-              <Link href="/mission"><button style={{backgroundImage: "url('/img/fourbtn/mission.svg')"}}>MISSION</button></Link >
-              <Link href="/check-in"><button style={{backgroundImage: "url('/img/fourbtn/checkin.svg')"}}>CHECK-IN</button></Link >
-              <Link href="/progress"><button style={{backgroundImage: "url('/img/fourbtn/progress.svg')"}}>PROGRESS</button></Link >
+              <div className="hoverer hvr-gold"><Link href="/story"><button style={{backgroundImage: "url('/img/fourbtn/story.svg')"}}>STORY</button></Link ></div>
+              <div className="hoverer hvr-pink"><Link href="/mission"><button style={{backgroundImage: "url('/img/fourbtn/mission.svg')"}}>MISSION</button></Link ></div>
+              <div className="hoverer hvr-blue"><Link href="/check-in"><button style={{backgroundImage: "url('/img/fourbtn/checkin.svg')"}}>CHECK-IN</button></Link ></div>
+              <div className="hoverer hvr-green"><Link href="/progress"><button style={{backgroundImage: "url('/img/fourbtn/progress.svg')"}}>PROGRESS</button></Link ></div>
             </div>
           </div>
+          <img className="fullfill astro-prx" src="/img/prx/astro-prx.svg" alt=""/>
         </Wrapper>
+
       </Backlayer>
   );
 }
+
+const useMousePosition = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 , orix: 0, oriy:0});
+  var justOnce = 0;
+  
+  const updateMousePosition = ev => {
+    if (justOnce == 0){
+      setMousePosition({ x: ev.clientX, y: ev.clientY, orix: 0, oriy: 0 });
+      justOnce = 1;
+    }else if (justOnce == 1){
+      setMousePosition({ x: ev.clientX, y: ev.clientY, orix: 23, oriy: 23 });
+      justOnce = 2;
+    }else if(justOnce == 2){
+      setMousePosition({ x: ev.clientX, y: ev.clientY});
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("mousemove", updateMousePosition);
+
+    return () => window.removeEventListener("mousemove", updateMousePosition);
+  }, []);
+
+  return mousePosition;
+};
 
 const Notifier = ({text, position}) => {
   return (
@@ -63,15 +94,13 @@ const Notifier = ({text, position}) => {
   );
 }
   
-const Wrapper = Styled.div`
+const Wrapper = Styled.div(({x, y}) => `
 
   position: fixed;
-  top: 0;
-  left: 0;
 
   width: 100%;
   height: 100%;
-  background-image: url('/img/indexbg.svg');
+  background-image: url('/img/indexbg-prx.svg');
   
   background-attachment: fixed;
   background-position-x: right;
@@ -83,6 +112,12 @@ const Wrapper = Styled.div`
   align-items: flex-start;
   justify-content: space-between;
   flex-direction: column;
+
+  .fullfill{
+    position: fixed;
+    top: ${y/100}px;
+    left: ${x/100}px;
+  }
 
   .upper, .lower{
     display: flex;
@@ -129,11 +164,40 @@ const Wrapper = Styled.div`
 
     color: #484F93;
   }
-  .fourbtn{
+  .fourbtn{ 
+    margin-bottom: 44px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    .hoverer{
+      margin: 28px 28px 0 0;
+      width: 228px;
+      height: 78px;
+      border-radius: 12px;
+      background-color: #00042A;
+      transition: 0.25s;
+    }
+    
+    .hvr-gold:hover{
+      background-color: #FFC700;
+      
+    }
+    .hvr-pink:hover{
+      background-color: #CC11A8;
+      
+    }
+    .hvr-blue:hover{
+      background-color: #4556FF;
+      
+    }
+    .hvr-green:hover{
+      background-color: #13E08C;
+
+    }
     button{
       width: 228px;
       height: 78px;
-      margin: 28px 28px 44px 0;
 
       box-shadow: -4px -4px 8px rgba(255, 255, 255, 0.1), 4px 4px 8px #000000;
       border-radius: 12px;
@@ -148,6 +212,7 @@ const Wrapper = Styled.div`
       text-align: left;
       letter-spacing: 0.08em;
       padding-left: 18px;
+      padding-bottom: 2px;
 
       color: #FFFFFF;
 
@@ -155,10 +220,12 @@ const Wrapper = Styled.div`
         outline:none;
         filter: brightness(2);
       }
+      &:hover{
+        
+      }
     }
   }
-}
-`
+`)
 const Backlayer = Styled.div`
   position: fixed;
   top: 0;

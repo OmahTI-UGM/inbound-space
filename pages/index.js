@@ -5,7 +5,7 @@ import LayoutNav from '../components/layouts/Nav'
 import Link from 'next/link'
   
 const Index = () => {
-  const { x, y, orix, oriy } = useMousePosition();
+  const { x, y} = useMousePosition();
   const hasMovedCursor = typeof x === "number" && typeof y === "number";
 
 
@@ -17,7 +17,7 @@ const Index = () => {
         </Head>
         <Wrapper className="homepage-bg" x={x} y={y}>
           <div className="upper">
-            <h4>WELCOME TO {x + " " + y + " " + orix + " " + oriy}</h4>
+            <h4>WELCOME TO</h4>
             <h2>2020 inbound</h2>
             <h1>SPACE <br/> PROGRAM</h1>
           </div>
@@ -31,6 +31,8 @@ const Index = () => {
             </div>
           </div>
           <img className="fullfill astro-prx" src="/img/prx/astro-prx.svg" alt=""/>
+          <img className="fullfill sun-prx" src="/img/prx/sun-prx.svg" alt=""/>
+          <img className="fullfill stars-prx" src="/img/prx/stars-prx.svg" alt=""/>
           <div className="layerbase"></div>
         </Wrapper>
 
@@ -121,11 +123,22 @@ const Wrapper = Styled.div(({x, y}) => `
   }
   .fullfill{
     position: fixed;
+  }
+  .astro-prx{
     top: ${y/100}px;
     left: ${x/100}px;
     z-index: -20;
   }
-
+  .sun-prx{
+    top: ${y/300}px;
+    left: ${x/300}px;
+    z-index: -20;
+  }
+  .stars-prx{
+    top: ${-y/300}px;
+    left: ${-x/300}px;
+    z-index: -100;
+  }
   .upper, .lower{
     display: flex;
     align-items: flex-start;

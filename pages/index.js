@@ -31,6 +31,7 @@ const Index = () => {
             </div>
           </div>
           <img className="fullfill astro-prx" src="/img/prx/astro-prx.svg" alt=""/>
+          <div className="layerbase"></div>
         </Wrapper>
 
       </Backlayer>
@@ -113,10 +114,16 @@ const Wrapper = Styled.div(({x, y}) => `
   justify-content: space-between;
   flex-direction: column;
 
+  .layerbase{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+  }
   .fullfill{
     position: fixed;
     top: ${y/100}px;
     left: ${x/100}px;
+    z-index: -20;
   }
 
   .upper, .lower{

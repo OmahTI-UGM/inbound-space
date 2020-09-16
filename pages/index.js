@@ -1,33 +1,50 @@
 import Head from 'next/head'
 import React, {useState, useEffect} from 'react'
 import Styled from '@emotion/styled'
-import LayoutNav from '../components/layouts/Nav'
+import useMousePosition from '../components/MousePosition'
+import Mobile from '../components/mobile/Index'
 import Link from 'next/link'
   
 const Index = () => {
-  const { x, y} = useMousePosition();
-  const hasMovedCursor = typeof x === "number" && typeof y === "number";
+  const [titleFade, settitleFade] = useState(0);
+  const [screen, setScreen] = useState(undefined);
+  const { x, y } = useMousePosition();
 
+  useEffect(() => {
+    setScreen(window.innerWidth);
+    setTimeout(() => {
+      document.addEventListener("load", settitleFade(1));
+    }, 500);
 
-  return (
+    window.addEventListener('resize', handleWindowSizeChange);
+  });
+
+  const handleWindowSizeChange = () => {
+    setScreen(window.innerWidth);
+  };
+
+  if(screen > 1000){ return (
       <Backlayer>
         <Head>
           <title>Inbound 2020</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <Wrapper className="homepage-bg" x={x} y={y}>
-          <div className="upper">
-            <h4>WELCOME TO</h4>
-            <h2>2020 inbound</h2>
-            <h1>SPACE <br/> PROGRAM</h1>
-          </div>
-          <div className="lower">
-            <Notifier text="Siap untuk menjalankan misinya? simak kisahnya dahulu..." position={1} />
-            <div className="fourbtn">
-              <div className="hoverer hvr-gold"><Link href="/story"><button style={{backgroundImage: "url('/img/fourbtn/story.svg')"}}>STORY</button></Link ></div>
-              <div className="hoverer hvr-pink"><Link href="/mission"><button style={{backgroundImage: "url('/img/fourbtn/mission.svg')"}}>MISSION</button></Link ></div>
-              <div className="hoverer hvr-blue"><Link href="/check-in"><button style={{backgroundImage: "url('/img/fourbtn/checkin.svg')"}}>CHECK-IN</button></Link ></div>
-              <div className="hoverer hvr-green"><Link href="/progress"><button style={{backgroundImage: "url('/img/fourbtn/progress.svg')"}}>PROGRESS</button></Link ></div>
+      
+        <Wrapper className="homepage-bg" x={x} y={y} titleFade={titleFade}>
+          <div className="content">
+            <div className="upper">
+              <h4>WELCOME TO {screen}</h4>
+              <h2>2020 inbound</h2>
+              <h1>SPACE <br/> <span className="delay">PROGRAM</span></h1>
+            </div>
+            <div className="lower">
+              <Notifier text="Siap untuk menjalankan misinya? simak kisahnya dahulu..." position={1} />
+              <div className="fourbtn">
+                <div className="hoverer hvr-gold"><Link href="/story"><button style={{backgroundImage: "url('/img/fourbtn/story.svg')"}}>STORY</button></Link ></div>
+                <div className="hoverer hvr-pink"><Link href="/mission"><button style={{backgroundImage: "url('/img/fourbtn/mission.svg')"}}>MISSION</button></Link ></div>
+                <div className="hoverer hvr-blue"><Link href="/check-in"><button style={{backgroundImage: "url('/img/fourbtn/checkin.svg')"}}>CHECK-IN</button></Link ></div>
+                <div className="hoverer hvr-green"><Link href="/progress"><button style={{backgroundImage: "url('/img/fourbtn/progress.svg')"}}>PROGRESS</button></Link ></div>
+              </div>
             </div>
           </div>
           <img className="fullfill astro-prx" src="/img/prx/astro-prx.svg" alt=""/>
@@ -37,33 +54,12 @@ const Index = () => {
         </Wrapper>
 
       </Backlayer>
-  );
+  )}else{
+    return (
+      <Mobile />
+    )
+  }
 }
-
-const useMousePosition = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 , orix: 0, oriy:0});
-  var justOnce = 0;
-  
-  const updateMousePosition = ev => {
-    if (justOnce == 0){
-      setMousePosition({ x: ev.clientX, y: ev.clientY, orix: 0, oriy: 0 });
-      justOnce = 1;
-    }else if (justOnce == 1){
-      setMousePosition({ x: ev.clientX, y: ev.clientY, orix: 23, oriy: 23 });
-      justOnce = 2;
-    }else if(justOnce == 2){
-      setMousePosition({ x: ev.clientX, y: ev.clientY});
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("mousemove", updateMousePosition);
-
-    return () => window.removeEventListener("mousemove", updateMousePosition);
-  }, []);
-
-  return mousePosition;
-};
 
 const Notifier = ({text, position}) => {
   return (
@@ -97,7 +93,7 @@ const Notifier = ({text, position}) => {
   );
 }
   
-const Wrapper = Styled.div(({x, y}) => `
+const Wrapper = Styled.div(({x, y, titleFade}) => `
 
   position: fixed;
 
@@ -110,14 +106,23 @@ const Wrapper = Styled.div(({x, y}) => `
   background-position-y: top;
   background-repeat: no-repeat;
   background-size: cover;
-  padding-left: 102px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  flex-direction: column;
-
+  
+  
+  .content{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-left: 102px;
+    width: 100%;
+    height: 100%;
+  }
   .layerbase{
     position: fixed;
+    z-index: -1;
     width: 100%;
     height: 100%;
   }
@@ -154,8 +159,16 @@ const Wrapper = Styled.div(({x, y}) => `
     line-height: 102.8%;
     margin: 8px 0 0 0;
 
+    transition:4s;
+    transition-delay:0;
     display: inline-block;
+    filter: opacity(${titleFade});
     color: #FFFFFF;
+    
+    .delay{
+      transition-delay:1s !important;
+      transition:1s !important;
+    }
   }
   h2{
     font-family: Poppkorn;

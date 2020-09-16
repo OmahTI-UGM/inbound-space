@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import React, {useState, useEffect} from 'react'
 import Styled from '@emotion/styled'
 import useMousePosition from '../components/MousePosition'
@@ -23,41 +22,50 @@ const Index = () => {
     setScreen(window.innerWidth);
   };
 
-  if(screen > 1000){ return (
-      <Backlayer>
-        <Head>
-          <title>Inbound 2020</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-      
-        <Wrapper className="homepage-bg" x={x} y={y} titleFade={titleFade}>
-          <div className="content">
-            <div className="upper">
-              <h4>WELCOME TO {screen}</h4>
-              <h2>2020 inbound</h2>
-              <h1>SPACE <br/> <span className="delay">PROGRAM</span></h1>
-            </div>
-            <div className="lower">
-              <Notifier text="Siap untuk menjalankan misinya? simak kisahnya dahulu..." position={1} />
-              <div className="fourbtn">
-                <div className="hoverer hvr-gold"><Link href="/story"><button style={{backgroundImage: "url('/img/fourbtn/story.svg')"}}>STORY</button></Link ></div>
-                <div className="hoverer hvr-pink"><Link href="/mission"><button style={{backgroundImage: "url('/img/fourbtn/mission.svg')"}}>MISSION</button></Link ></div>
-                <div className="hoverer hvr-blue"><Link href="/check-in"><button style={{backgroundImage: "url('/img/fourbtn/checkin.svg')"}}>CHECK-IN</button></Link ></div>
-                <div className="hoverer hvr-green"><Link href="/progress"><button style={{backgroundImage: "url('/img/fourbtn/progress.svg')"}}>PROGRESS</button></Link ></div>
-              </div>
+  if (screen > 450){ 
+  return (
+    <Backlayer>
+      <Wrapper className="homepage-bg" x={x} y={y} titleFade={titleFade}>
+        <div className="content">
+          <div className="upper">
+            <h4>WELCOME TO</h4>
+            <h2>2020 inbound</h2>
+            <h1>SPACE <br/> <span className="delay">PROGRAM</span></h1>
+          </div>
+          <div className="lower">
+            <Notifier text="Siap untuk menjalankan misinya? simak kisahnya dahulu..." position={1} />
+            <div className="fourbtn">
+              <div className="hoverer hvr-gold"><Link href="/story"><button style={{backgroundImage: "url('/img/fourbtn/story.svg')"}}>STORY</button></Link ></div>
+              <div className="hoverer hvr-pink"><Link href="/mission"><button style={{backgroundImage: "url('/img/fourbtn/mission.svg')"}}>MISSION</button></Link ></div>
+              <div className="hoverer hvr-blue"><Link href="/check-in"><button style={{backgroundImage: "url('/img/fourbtn/checkin.svg')"}}>CHECK-IN</button></Link ></div>
+              <div className="hoverer hvr-green"><Link href="/progress"><button style={{backgroundImage: "url('/img/fourbtn/progress.svg')"}}>PROGRESS</button></Link ></div>
             </div>
           </div>
-          <img className="fullfill astro-prx" src="/img/prx/astro-prx.svg" alt=""/>
-          <img className="fullfill sun-prx" src="/img/prx/sun-prx.svg" alt=""/>
-          <img className="fullfill stars-prx" src="/img/prx/stars-prx.svg" alt=""/>
-          <div className="layerbase"></div>
-        </Wrapper>
+        </div>
+        <img className="fullfill astro-prx" src="/img/prx/astro-prx.svg" alt=""/>
+        <img className="fullfill sun-prx" src="/img/prx/sun-prx.svg" alt=""/>
+        <img className="fullfill stars-prx" src="/img/prx/stars-prx.svg" alt=""/>
+        <img className="fullfill ontop-prx" src="/img/prx/ontop-prx.svg" alt=""/>
+        <div className="layerbase"></div>
+        
+        <div className="sider">
+          <div className="side-navbar">
+            <div className="nav-content">
+              <Link href="/timeline"><a className="timeline">TIMELINE</a></Link>
+              <Link href="/awards"><a className="awards">AWARDS</a></Link>
+              <Link href="/about"><a className="about">ABOUT</a></Link>
+              <Link href="/help"><a className="help">HELP</a></Link>
+            </div>
+          </div>
+        </div>
 
-      </Backlayer>
+      </Wrapper>
+
+    </Backlayer>
   )}else{
-    return (
-      <Mobile />
-    )
+  return (
+    <Mobile />
+  )
   }
 }
 
@@ -107,7 +115,66 @@ const Wrapper = Styled.div(({x, y, titleFade}) => `
   background-repeat: no-repeat;
   background-size: cover;
   
-  
+  .sider{
+    position: fixed;
+    top:0;
+    right: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 42px;
+    padding-bottom: 40px;
+  }
+  .side-navbar{
+    position: relative;
+    width: 42px;
+    height: 450px;
+
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    .nav-content{
+
+      height: 340px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: column-reverse;
+      
+    }
+
+    a{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Exo 2;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 22px;
+      text-align: center;
+      letter-spacing: 0.08em;
+      
+      color: #FFFFFF;
+      transform: rotate(270deg);
+    }
+    .timeline{
+      margin:12px;
+    }
+    .awards{
+      margin:12px;
+    }
+    .about{
+      margin:;
+    }
+    .help{
+      margin:;
+    }
+  }
   .content{
     display: flex;
     align-items: flex-start;
@@ -267,7 +334,7 @@ const Backlayer = Styled.div`
   width: 100%;
   height: 100%;
   background: linear-gradient(105.16deg, #000000 2.14%, rgba(0, 0, 0, 0) 41.67%);
-}
+
 `
   
 export default Index

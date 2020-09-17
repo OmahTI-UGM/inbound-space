@@ -22,18 +22,21 @@ const Index = () => {
     setScreen(window.innerWidth);
   };
 
-  if (screen > 450){ 
+  if (screen > 580){ 
   return (
     <Backlayer>
-      <Wrapper className="homepage-bg" x={x} y={y} titleFade={titleFade}>
+      <Wrapper className="homepage-bg" x={x} y={y} titleFade={titleFade} screen={screen}>
         <div className="content">
           <div className="upper">
-            <h4>WELCOME TO</h4>
+            {(screen > 1200) ? <h4>WELCOME TO {screen}</h4> : ""}
             <h2>2020 inbound</h2>
-            <h1>SPACE <br/> <span className="delay">PROGRAM</span></h1>
+            {(screen > 1200) ? <h1>SPACE <br/> <span className="delay">PROGRAM</span></h1>
+            : <h1>SPACE <br/> <span className="delay">PROGRAM</span></h1>}
           </div>
+
+          { (screen > 1200) ? 
           <div className="lower">
-            <Notifier text="Siap untuk menjalankan misinya? simak kisahnya dahulu..." position={1} />
+           <Notifier text="Siap untuk menjalankan misinya? simak kisahnya dahulu..." position={1} /> 
             <div className="fourbtn">
               <div className="hoverer hvr-gold"><Link href="/story"><button style={{backgroundImage: "url('/img/fourbtn/story.svg')"}}>STORY</button></Link ></div>
               <div className="hoverer hvr-pink"><Link href="/mission"><button style={{backgroundImage: "url('/img/fourbtn/mission.svg')"}}>MISSION</button></Link ></div>
@@ -41,6 +44,16 @@ const Index = () => {
               <div className="hoverer hvr-green"><Link href="/progress"><button style={{backgroundImage: "url('/img/fourbtn/progress.svg')"}}>PROGRESS</button></Link ></div>
             </div>
           </div>
+          :
+          <div className="lower">
+            <div className="fourbtn fourbtn-medscreen">
+              <div className="hoverer hvr-gold"><Link href="/story"><button style={{backgroundImage: "url('/img/fourbtn/story.svg')"}}>STORY</button></Link ></div>
+              <div className="hoverer hvr-pink"><Link href="/mission"><button style={{backgroundImage: "url('/img/fourbtn/mission.svg')"}}>MISSION</button></Link ></div>
+              <div className="hoverer hvr-blue"><Link href="/check-in"><button style={{backgroundImage: "url('/img/fourbtn/checkin.svg')"}}>CHECK-IN</button></Link ></div>
+              <div className="hoverer hvr-green"><Link href="/progress"><button style={{backgroundImage: "url('/img/fourbtn/progress.svg')"}}>PROGRESS</button></Link ></div>
+            </div>
+          </div>
+          }
         </div>
         <img className="fullfill astro-prx" src="/img/prx/astro-prx.svg" alt=""/>
         <img className="fullfill sun-prx" src="/img/prx/sun-prx.svg" alt=""/>
@@ -48,14 +61,12 @@ const Index = () => {
         <img className="fullfill ontop-prx" src="/img/prx/ontop-prx.svg" alt=""/>
         <div className="layerbase"></div>
         
-        <div className="sider">
-          <div className="side-navbar">
-            <div className="nav-content">
-              <Link href="/timeline"><a className="timeline">TIMELINE</a></Link>
-              <Link href="/awards"><a className="awards">AWARDS</a></Link>
-              <Link href="/about"><a className="about">ABOUT</a></Link>
-              <Link href="/help"><a className="help">HELP</a></Link>
-            </div>
+        <div className="navbar">
+          <div className="nav-content">
+            <Link href="/timeline"><a className="timeline">TIMELINE</a></Link>
+            <Link href="/awards"><a className="awards">AWARDS</a></Link>
+            <Link href="/about"><a className="about">ABOUT</a></Link>
+            <Link href="/help"><a className="help">HELP</a></Link>
           </div>
         </div>
 
@@ -64,7 +75,7 @@ const Index = () => {
     </Backlayer>
   )}else{
   return (
-    <Mobile />
+    <Mobile titleFade={titleFade}/>
   )
   }
 }
@@ -101,7 +112,7 @@ const Notifier = ({text, position}) => {
   );
 }
   
-const Wrapper = Styled.div(({x, y, titleFade}) => `
+const Wrapper = Styled.div(({x, y, titleFade, screen}) => `
 
   position: fixed;
 
@@ -115,75 +126,49 @@ const Wrapper = Styled.div(({x, y, titleFade}) => `
   background-repeat: no-repeat;
   background-size: cover;
   
-  .sider{
+  .navbar{
     position: fixed;
-    top:0;
-    right: 0;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 42px;
-    padding-bottom: 40px;
-  }
-  .side-navbar{
-    position: relative;
-    width: 42px;
-    height: 450px;
+    top: 0;
+    right:0;
 
-    background: rgba(0, 0, 0, 0.4);
-    border-radius: 8px;
+    width: 100%;
+    height: 41px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
-    
+    padding-right: 32px;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 50%, rgba(0,0,0,1));
+
     .nav-content{
-
-      height: 340px;
+      width: 446px;
+      height: 100%;
       display: flex;
-      justify-content: space-between;
+      justify-content: space-evenly;
       align-items: center;
-      flex-direction: column-reverse;
-      
     }
-
     a{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: Exo 2;
+      font-family: 'Exo2-lit';
       font-style: normal;
       font-weight: 600;
-      font-size: 18px;
+      font-size: 17px;
       line-height: 22px;
       text-align: center;
-      letter-spacing: 0.08em;
-      
+      letter-spacing: 2px;
+
       color: #FFFFFF;
-      transform: rotate(270deg);
-    }
-    .timeline{
-      margin:12px;
-    }
-    .awards{
-      margin:12px;
-    }
-    .about{
-      margin:;
-    }
-    .help{
-      margin:;
+      margin-bottom: 2px;
     }
   }
+
   .content{
     display: flex;
-    align-items: flex-start;
+    align-items: ${screen > 672 ? "flex-start" : "center"};
     justify-content: space-between;
     flex-direction: column;
     position: fixed;
     top: 0;
     left: 0;
-    padding-left: 102px;
+    padding: ${ screen > 672 ? "0 0 0 102px;" : "padding: 0;" }
     width: 100%;
     height: 100%;
   }
@@ -218,6 +203,10 @@ const Wrapper = Styled.div(({x, y, titleFade}) => `
     flex-direction: column;
   }
 
+  .upper{
+    width: ${screen > 680 ? "auto" : "518px"};
+  }
+
   h1{
     font-family: 'Exo2-eb';
     font-style: normal;
@@ -233,8 +222,9 @@ const Wrapper = Styled.div(({x, y, titleFade}) => `
     color: #FFFFFF;
     
     .delay{
-      transition-delay:1s !important;
-      transition:1s !important;
+      filter: opacity(${titleFade});
+      transition-delay:2s !important;
+      transition:2s !important;
     }
   }
   h2{
@@ -244,7 +234,7 @@ const Wrapper = Styled.div(({x, y, titleFade}) => `
     font-size: 75px;
     line-height: 50px;
 
-    margin: 42px 0 0 0;
+    margin: ${ screen > 1200 ? "42px" : "64px"} 0 0 0;
 
     background: -webkit-linear-gradient(0deg, #F29C1F 60%, #EA1984);
     -webkit-background-clip: text;
@@ -258,12 +248,13 @@ const Wrapper = Styled.div(({x, y, titleFade}) => `
 
     text-align: left;
     letter-spacing: 0.36em;
-    margin: 50px 0 0 0;
+    margin: 44px 0 0 0;
 
     display: inline-block;
 
     color: #484F93;
   }
+  
   .fourbtn{ 
     margin-bottom: 44px;
     display: flex;
@@ -324,6 +315,10 @@ const Wrapper = Styled.div(({x, y, titleFade}) => `
         
       }
     }
+  }
+  .fourbtn-medscreen{
+    width: 518px;
+    flex-wrap: wrap;
   }
 `)
 const Backlayer = Styled.div`

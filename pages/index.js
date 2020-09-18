@@ -28,15 +28,15 @@ const Index = () => {
       <Wrapper className="homepage-bg" x={x} y={y} titleFade={titleFade} screen={screen}>
         <div className="content">
           <div className="upper">
-            {(screen > 1200) ? <h4>WELCOME TO {screen}</h4> : ""}
+            {(screen > 1150) ? <h4>WELCOME TO</h4> : ""}
             <h2>2020 inbound</h2>
-            {(screen > 1200) ? <h1>SPACE <br/> <span className="delay">PROGRAM</span></h1>
+            {(screen > 1150) ? <h1>SPACE <br/> <span className="delay">PROGRAM</span></h1>
             : <h1>SPACE <br/> <span className="delay">PROGRAM</span></h1>}
           </div>
 
-          { (screen > 1200) ? 
+          { (screen > 1150) ? 
           <div className="lower">
-           <Notifier text="Siap untuk menjalankan misinya? simak kisahnya dahulu..." position={1} /> 
+            <Notifier text="Siap untuk menjalankan misinya? simak kisahnya dahulu..." position={1} /> 
             <div className="fourbtn">
               <div className="hoverer hvr-gold"><Link href="/story"><button style={{backgroundImage: "url('/img/fourbtn/story.svg')"}}>STORY</button></Link ></div>
               <div className="hoverer hvr-pink"><Link href="/mission"><button style={{backgroundImage: "url('/img/fourbtn/mission.svg')"}}>MISSION</button></Link ></div>
@@ -171,6 +171,7 @@ const Wrapper = Styled.div(({x, y, titleFade, screen}) => `
     padding: ${ screen > 672 ? "0 0 0 102px;" : "padding: 0;" }
     width: 100%;
     height: 100%;
+    transition: 1s;
   }
   .layerbase{
     position: fixed;
@@ -183,12 +184,12 @@ const Wrapper = Styled.div(({x, y, titleFade, screen}) => `
   }
   .astro-prx{
     top: ${y/100}px;
-    left: ${x/100}px;
+    ${screen > 1150 ? "right: -" : "left:"}${x/100-220}px;
     z-index: -20;
   }
   .sun-prx{
-    top: ${y/300}px;
-    left: ${x/300}px;
+    bottom: 0;
+    right: -${x/300}px;
     z-index: -20;
   }
   .stars-prx{
@@ -234,7 +235,7 @@ const Wrapper = Styled.div(({x, y, titleFade, screen}) => `
     font-size: 75px;
     line-height: 50px;
 
-    margin: ${ screen > 1200 ? "42px" : "64px"} 0 0 0;
+    margin: ${ screen > 1150 ? "42px" : "64px"} 0 0 0;
 
     background: -webkit-linear-gradient(0deg, #F29C1F 60%, #EA1984);
     -webkit-background-clip: text;

@@ -14,7 +14,13 @@ const Index = ({titleFade}) => {
                         </div>
                         <div className="lower">
                             <div className="blackbox">
-                                <div className="specialbtn hoverer hvr-gold"><Link href="/story"><button style={{backgroundImage: "url('/img/fourbtn/m-story.svg')"}}>STORY</button></Link ></div>
+                                <div className="specialbtn hoverer hvr-gold"><Link href="/story"><button style={{backgroundImage: "url('/img/fourbtn/m-story.svg')"}}><p>STORY</p></button></Link ></div>
+                                <div className="notifier">
+                                    <p>Siap untuk jalankan<br/>misinya? simak<br/>kisahnya dahulu</p>
+                                    <svg className="notif-svg" width="17" height="34" viewBox="0 0 17 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9.01781 33.0365C9.0182 33.0361 9.01865 33.0358 9.01905 33.0353L15.8074 26.2141C16.3159 25.7031 16.314 24.8766 15.8029 24.3679C15.2919 23.8593 14.4654 23.8612 13.9568 24.3723L9.39919 28.952L9.39919 1.30544C9.39919 0.584447 8.81475 -3.22273e-07 8.09375 -3.53789e-07C7.37275 -3.85305e-07 6.78831 0.584447 6.78831 1.30544L6.7883 28.952L2.23074 24.3723C1.72214 23.8613 0.895594 23.8593 0.384578 24.3679C-0.126569 24.8766 -0.128331 25.7032 0.380139 26.2142L7.16845 33.0354C7.16884 33.0358 7.1693 33.0361 7.16969 33.0366C7.67999 33.5478 8.50921 33.5462 9.01781 33.0365Z" fill="#fff"/>
+                                    </svg>
+                                </div>
                             </div>
                             <div className="hoverer hvr-pink"><Link href="/mission"><button style={{backgroundImage: "url('/img/fourbtn/mission.svg')"}}>MISSION</button></Link ></div>
                             <div className="hoverer hvr-blue"><Link href="/check-in"><button style={{backgroundImage: "url('/img/fourbtn/checkin.svg')"}}>CHECK-IN</button></Link ></div>
@@ -27,6 +33,8 @@ const Index = ({titleFade}) => {
         </Wrapper>
     );
 }
+
+
     
 const Wrapper = Styled.div(({titleFade})=>`
     position: fixed;
@@ -75,6 +83,23 @@ const Wrapper = Styled.div(({titleFade})=>`
         background-size: cover;
         z-index: -20;
     }
+    .notifier{
+
+        margin-left: 32px;
+        p{
+            font-family: 'Exo2-lit';
+            font-style: normal;
+            font-weight: normal;
+            font-size: 15px;
+            line-height: 18px;
+
+            color: #FFFFFF;
+        }
+        svg{
+            transform: rotate(90deg);
+            margin-left: 8px;
+        }
+    }
     h1{
         font-family: 'Exo2-eb';
         font-style: normal;
@@ -110,11 +135,17 @@ const Wrapper = Styled.div(({titleFade})=>`
         display: inline-block;
     }
     .blackbox{
-        width: 335px;
-        height: 143px;
-
+        width: 336px;
+        height: 148px;
+        
+        margin-top: 36px;
         background: rgba(0, 0, 0, 0.62);
         border-radius: 14px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding-left: 6px;
+        padding-bottom: 1px;
     }
     .specialbtn{
         height: 136px;
@@ -122,18 +153,35 @@ const Wrapper = Styled.div(({titleFade})=>`
         border-radius: 12px;
         box-shadow: -4px -4px 8px rgba(255, 255, 255, 0.1), 4px 4px 8px #000000;
         background-color: #120B35 ;    
-        display: flex;
-        justify-content: center;
-        align-items: center;
         
         button{
             border-radius: 12px;
             height: 136px;
             width: 136px;
             border: none;
+            padding: 16px;
+            padding-left: 12px;
             background: none;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-end;
             &:focus{
                 outline: none;
+            }
+            p{
+                margin: 0;
+                writing-mode: vertical-rl;
+                text-orientation: mixed;
+                transform: rotate(180deg);
+                
+                font-family: 'Exo2-med';
+                font-style: normal;
+                font-weight: bold;
+                font-size: 24px;
+                line-height: 29px;
+                letter-spacing: 0.08em;
+
+                color: #FFFFFF;
             }
         }
     }

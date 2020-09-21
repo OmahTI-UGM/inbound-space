@@ -184,7 +184,7 @@ const Wrapper = Styled.div(({x, y, titleFade, screen}) => `
   }
   .astro-prx{
     top: ${y/100}px;
-    ${screen > 1150 ? "right: -" : "left:"}${x/100-220}px;
+    ${screen > 1150 ? "right:": "left:"}${screen > 1150 ? -x/100 :  x/100-220 }px;
     z-index: -20;
   }
   .sun-prx{
@@ -203,7 +203,6 @@ const Wrapper = Styled.div(({x, y, titleFade, screen}) => `
     justify-content: flex-start;
     flex-direction: column;
   }
-
   .upper{
     width: ${screen > 680 ? "auto" : "518px"};
   }

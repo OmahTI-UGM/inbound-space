@@ -56,6 +56,10 @@ const Wrapper = Styled.div(({titleFade})=>`
     align-items: center;
     flex-direction: column;
     
+    
+    .lower{
+        width: 100%;
+    }
     .pre-content{
         display: flex;
         justify-content: flex-start;
@@ -65,7 +69,8 @@ const Wrapper = Styled.div(({titleFade})=>`
         min-width: 336px;
     }
     .content{
-        max-width: 336px;
+        min-width: 336px;
+        width: 100%;
     }
     &::before{
         position: fixed;
@@ -135,7 +140,7 @@ const Wrapper = Styled.div(({titleFade})=>`
         display: inline-block;
     }
     .blackbox{
-        width: 336px;
+        width: 100%;
         height: 148px;
         
         margin-top: 36px;

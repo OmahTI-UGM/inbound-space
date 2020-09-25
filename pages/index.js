@@ -184,7 +184,7 @@ const Wrapper = Styled.div(({x, y, titleFade, screen}) => `
   }
   .astro-prx{
     top: ${y/100}px;
-    left: ${screen > 1150 ? -x/100 :  x/100-220 }px;
+    left: ${screen > 1150 ? x/100 :  x/100-220 }px;
     z-index: -20;
   }
   .sun-prx{

@@ -24,7 +24,7 @@ const Wrapper = Styled.div(({pageId}) => `
     position: fixed;
     display: flex;
     justify-content: space-evenly;
-    flex-direction: ${ pageId % 2 !== 0 ? "row" : "row-reverse"};
+    flex-direction: ${ pageId % 2 == 0 ? "row" : "row-reverse"};
     align-items: center;
     color: white;
     p{

@@ -14,7 +14,7 @@ const Index = ({titleFade}) => {
                         </div>
                         <div className="lower">
                             <div className="blackbox">
-                                <div className="specialbtn hoverer hvr-gold"><Link href="/story"><button style={{backgroundImage: "url('/img/fourbtn/m-story.svg')"}}><p>STORY</p></button></Link ></div>
+                                <div className="specialbtn hvr-gold"><Link href="/story"><button style={{backgroundImage: "url('/img/fourbtn/m-story.svg')"}}><p>STORY</p></button></Link ></div>
                                 <div className="notifier">
                                     <p>Siap untuk jalankan<br/>misinya? simak<br/>kisahnya dahulu</p>
                                     <svg className="notif-svg" width="17" height="34" viewBox="0 0 17 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -22,9 +22,11 @@ const Index = ({titleFade}) => {
                                     </svg>
                                 </div>
                             </div>
-                            <div className="hoverer hvr-pink"><Link href="/mission"><button style={{backgroundImage: "url('/img/fourbtn/mission.svg')"}}>MISSION</button></Link ></div>
-                            <div className="hoverer hvr-blue"><Link href="/check-in"><button style={{backgroundImage: "url('/img/fourbtn/checkin.svg')"}}>CHECK-IN</button></Link ></div>
-                            <div className="hoverer hvr-green"><Link href="/progress"><button style={{backgroundImage: "url('/img/fourbtn/progress.svg')"}}>PROGRESS</button></Link ></div>
+                            <div className="otherbtn">
+                                <div className="hoverer hvr-pink"><Link href="/mission"><button><img src="/img/fourbtn/m-mission.svg" alt=""/></button></Link ></div>
+                                <div className="hoverer hvr-blue"><Link href="/check-in"><button><img src="/img/fourbtn/m-mission.svg" alt=""/></button></Link ></div>
+                                <div className="hoverer hvr-green"><Link href="/progress"><button><img src="/img/fourbtn/m-mission.svg" alt=""/></button></Link ></div>
+                            </div>
                             
                         </div>
                     </div>
@@ -56,7 +58,35 @@ const Wrapper = Styled.div(({titleFade})=>`
     align-items: center;
     flex-direction: column;
     
-    
+    .otherbtn{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 6px;
+    }
+    .hoverer button{
+        height: 88px;
+        width: 88px;
+        border: none;
+        box-shadow: -4px -4px 8px rgba(255, 255, 255, 0.1), 4px 4px 8px #000000;
+        border-radius: 12px;
+
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        padding: 0;
+        overflow: hidden;
+        margin: 18px 5px;
+    }
+    .hvr-pink button{
+        background: linear-gradient(90deg, #00042A 26.04%, #240838 68.75%, #5B0D4C 100%) !important;
+    }
+    .hvr-blue button{
+        background: linear-gradient(90deg, #00042A 45.31%, #000853 73.44%, #000B78 100%) !important;
+    }
+    .hvr-green button{
+        background: linear-gradient(90deg, #00042A 40.87%, #00192F 65%, #007344 100%) !important;
+    }
     .lower{
         width: 100%;
     }

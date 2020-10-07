@@ -23,9 +23,24 @@ const Index = ({titleFade}) => {
                                 </div>
                             </div>
                             <div className="otherbtn">
-                                <div className="hoverer hvr-pink"><Link href="/mission"><button><img src="/img/fourbtn/m-mission.svg" alt=""/></button></Link ></div>
-                                <div className="hoverer hvr-blue"><Link href="/check-in"><button><img src="/img/fourbtn/m-mission.svg" alt=""/></button></Link ></div>
-                                <div className="hoverer hvr-green"><Link href="/progress"><button><img src="/img/fourbtn/m-mission.svg" alt=""/></button></Link ></div>
+                                <div className="hoverer hvr-pink">
+                                    <Link href="/mission">
+                                        <button><p>MISSION</p><img src="/img/fourbtn/m-mission.svg" alt=""/></button>
+                                    </Link >
+                                    <p className="label">MISSION</p>
+                                </div>
+                                <div className="hoverer hvr-blue">
+                                    <Link href="/check-in">
+                                        <button><p>CHECK-IN</p><img src="/img/fourbtn/m-checkin.svg" alt=""/></button>
+                                    </Link >
+                                    <p className="label">CHECK-IN</p>
+                                </div>
+                                <div className="hoverer hvr-green">
+                                    <Link href="/progress">
+                                        <button><p>PROGRESS</p><img src="/img/fourbtn/m-progress.svg" alt=""/></button>
+                                    </Link >
+                                    <p className="label">PROGRESS</p>
+                                </div>
                             </div>
                             
                         </div>
@@ -68,6 +83,21 @@ const Wrapper = Styled.div(({titleFade})=>`
     .hoverer{
         width: 100%;
         margin: 18px 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        
+        .label{
+            font-family: 'Exo2-med';
+            font-style: normal;
+            font-size: 15px;
+            line-height: 18px;
+            text-align: center;
+            letter-spacing: 0.08em;
+
+            color: #FFFFFF;
+        }
         button{
             height: 88px;
             width: 100%;
@@ -76,20 +106,40 @@ const Wrapper = Styled.div(({titleFade})=>`
             border-radius: 12px;
 
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
             align-items: flex-end;
             padding: 0;
             overflow: hidden;
+
+            p{
+                writing-mode: vertical-rl;
+                text-orientation: mixed;
+                -webkit-transform: rotate(180deg);
+                -ms-transform: rotate(180deg);
+                transform: rotate(180deg);
+
+                margin-bottom: 10px;
+                font-family: 'Exo2-med';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 12px;
+                line-height: 12px;
+                text-align: center;
+                letter-spacing: 0.08em;
+            }
         }
     }
     .hvr-pink button{
         background: linear-gradient(90deg, #00042A 26.04%, #240838 68.75%, #5B0D4C 100%) !important;
+        color: #9B1788;
     }
     .hvr-blue button{
         background: linear-gradient(90deg, #00042A 45.31%, #000853 73.44%, #000B78 100%) !important;
+        color: #323DA0;
     }
     .hvr-green button{
         background: linear-gradient(90deg, #00042A 40.87%, #00192F 65%, #007344 100%) !important;
+        color: #29A679;
     }
     .lower{
         width: 100%;

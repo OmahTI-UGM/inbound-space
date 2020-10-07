@@ -1,7 +1,7 @@
 import React from 'react'
 import Styled from '@emotion/styled'
     
-const Index = ({pageId, content, prevpage, nextpage}) => {
+const Index = ({pageId, content, prevpage, nextpage, tofinale}) => {
     return (
         <Wrapper pageId={pageId}>
             <div className="content">
@@ -12,9 +12,9 @@ const Index = ({pageId, content, prevpage, nextpage}) => {
                     <p className="p-content">{content[pageId].words}</p>
                     <hr/>
                     <div className="btns">
-                        <button onClick={()=> pageId >= 2? prevpage():''}className="prev"><svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.03364 7.36694L11.3275 1.83237C12.6607 1.03847 14.3508 1.99912 14.3508 3.55076L14.3508 14.6199C14.3508 16.1715 12.6607 17.1322 11.3275 16.3383L2.03363 10.8037C0.731378 10.0282 0.731377 8.14244 2.03364 7.36694Z" stroke="white" stroke-width="2"/></svg></button>
+                        <button onClick={()=> pageId >= 2 ? prevpage():''}className="prev"><svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.03364 7.36694L11.3275 1.83237C12.6607 1.03847 14.3508 1.99912 14.3508 3.55076L14.3508 14.6199C14.3508 16.1715 12.6607 17.1322 11.3275 16.3383L2.03363 10.8037C0.731378 10.0282 0.731377 8.14244 2.03364 7.36694Z" stroke="white" stroke-width="2"/></svg></button>
                         <p>{pageId}/5</p>
-                        <button onClick={()=> nextpage()}className="next"><svg width="24" height="28" viewBox="0 0 24 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.5905 12.1559C23.8927 12.9314 23.8927 14.8171 22.5905 15.5926L3.39233 27.0253C2.05918 27.8192 0.369021 26.8585 0.369021 25.3069L0.369022 2.44164C0.369022 0.890004 2.05918 -0.0706496 3.39233 0.723249L22.5905 12.1559Z" fill="#D7D7DA"/></svg></button>
+                        <button onClick={()=> pageId == 5 ? tofinale(): nextpage()}className="next"><svg width="24" height="28" viewBox="0 0 24 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.5905 12.1559C23.8927 12.9314 23.8927 14.8171 22.5905 15.5926L3.39233 27.0253C2.05918 27.8192 0.369021 26.8585 0.369021 25.3069L0.369022 2.44164C0.369022 0.890004 2.05918 -0.0706496 3.39233 0.723249L22.5905 12.1559Z" fill="#D7D7DA"/></svg></button>
                     </div>
                 </div>
                 <h1>.story</h1>

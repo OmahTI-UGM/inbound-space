@@ -63,20 +63,24 @@ const Wrapper = Styled.div(({titleFade})=>`
         justify-content: space-between;
         align-items: center;
         margin-top: 6px;
+        margin: 0 -6px;
     }
-    .hoverer button{
-        height: 88px;
-        width: 88px;
-        border: none;
-        box-shadow: -4px -4px 8px rgba(255, 255, 255, 0.1), 4px 4px 8px #000000;
-        border-radius: 12px;
+    .hoverer{
+        width: 100%;
+        margin: 18px 12px;
+        button{
+            height: 88px;
+            width: 100%;
+            border: none;
+            box-shadow: -4px -4px 8px rgba(255, 255, 255, 0.1), 4px 4px 8px #000000;
+            border-radius: 12px;
 
-        display: flex;
-        justify-content: flex-end;
-        align-items: flex-end;
-        padding: 0;
-        overflow: hidden;
-        margin: 18px 5px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            padding: 0;
+            overflow: hidden;
+        }
     }
     .hvr-pink button{
         background: linear-gradient(90deg, #00042A 26.04%, #240838 68.75%, #5B0D4C 100%) !important;

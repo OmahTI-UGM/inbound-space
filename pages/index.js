@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import Styled from '@emotion/styled'
 import useMousePosition from '../components/MousePosition'
-import Mobile from '../components/mobile/Index'
+import Mobile from '../components/mobile'
 import Link from 'next/link'
   
 const Index = () => {
@@ -228,7 +228,7 @@ const Wrapper = Styled.div(({x, y, titleFade, screen}) => `
     }
   }
   h2{
-    font-family: Poppkorn;
+    font-family: 'Poppkorn';
     font-style: normal;
     font-weight: normal;
     font-size: 75px;

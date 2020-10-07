@@ -156,7 +156,7 @@ const Wrapper = Styled.div(({titleFade})=>`
         }
     }
     h2{
-        font-family: Poppkorn;
+        font-family: 'Poppkorn';
         font-style: normal;
         font-weight: normal;
         font-size: 44px;

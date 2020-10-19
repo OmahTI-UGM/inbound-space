@@ -133,6 +133,7 @@ padding-bottom: 5%;
         transition: 1s;
     }
 }
+
 div.img{
     width: 380px;
     height: 380px;
@@ -214,7 +215,6 @@ button.next{
         align-items: center;
         display: inline;
     }
-
 }
 p{
     font-family: 'Exo2-med';

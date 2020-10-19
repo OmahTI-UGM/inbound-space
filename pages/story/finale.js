@@ -31,7 +31,6 @@ const Finale = () => {
             </div>
             <div className="bg bg1"></div>
             <div className="bg bg2"></div>
-            
         </Wrapper>
     );
 }

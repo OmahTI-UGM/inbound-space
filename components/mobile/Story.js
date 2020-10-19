@@ -57,7 +57,7 @@ const Wrapper = Styled.div(({pageId}) =>`
     .textbox{
         width: 100%;
         min-width: 350px;
-        max-width: 500px;
+        max-width: 450px;
         height: 208px;
 
         background: #050216;

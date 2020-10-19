@@ -53,7 +53,7 @@ const Wrapper = Styled.div(({moveOn, isBtn})=>`
     background-color: #050216;
 
     .smaller{
-        width: 520px;
+        width: 516px;
         transform: scale(0.5);
     }
     .content{

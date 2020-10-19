@@ -6,17 +6,25 @@ import BtnMission from '../../components/fourbtn/Pink'
 const Finale = () => {
     const [moveOn, setmoveOn] = useState(false)
     const [isBtn, setisBtn] = useState(false);
-    
+    const [screen, setScreen] = useState(undefined);
+
     useEffect(() => {
-            setmoveOn(true)
+        setScreen(window.innerWidth);
+        window.addEventListener('resize', setScreen(window.innerWidth));
+
+        setmoveOn(true)
             setTimeout(() => {
                 setisBtn(true)
             }, 7000);
+    });
+
+    useEffect(() => {
+            
     })
 
     return (
         <Wrapper moveOn={moveOn} isBtn={isBtn}>
-            <div className="textbox">
+            <div className={`textbox ${screen < 450 ? "smaller" : ""}`} >
                 <div className="content">
                     <p>ENTER THE <span>MISSION&nbsp;</span></p>
                     <div className="mid">
@@ -25,7 +33,7 @@ const Finale = () => {
                 </div>
                 <div className="hider"></div>
             </div>
-            <div className="non-over">
+            <div className={`non-over ${screen < 450 ? "smaller" : ""}`}>
                 <p className="opac0">ENTER THE MISSION&nbsp;</p>
                 <img className="imgastro" src="/img/finale/astroeject.svg" alt=""/>
             </div>
@@ -44,6 +52,10 @@ const Wrapper = Styled.div(({moveOn, isBtn})=>`
     align-items: center;
     background-color: #050216;
 
+    .smaller{
+        width: 520px;
+        transform: scale(0.5);
+    }
     .content{
         display: flex;
         justify-content: flex-start;

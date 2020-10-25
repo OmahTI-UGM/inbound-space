@@ -23,8 +23,8 @@ const Finale = () => {
     })
 
     return (
-        <Wrapper moveOn={moveOn} isBtn={isBtn}>
-            <div className={`textbox ${screen < 450 ? "smaller" : ""}`} >
+        <Wrapper moveOn={moveOn} isBtn={isBtn} screen={screen}>
+            <div className="textbox" >
                 <div className="content">
                     <p>ENTER THE <span>MISSION&nbsp;</span></p>
                     <div className="mid">
@@ -33,7 +33,7 @@ const Finale = () => {
                 </div>
                 <div className="hider"></div>
             </div>
-            <div className={`non-over ${screen < 450 ? "smaller" : ""}`}>
+            <div className="non-over">
                 <p className="opac0">ENTER THE MISSION&nbsp;</p>
                 <img className="imgastro" src="/img/finale/astroeject.svg" alt=""/>
             </div>
@@ -43,7 +43,7 @@ const Finale = () => {
     );
 }
     
-const Wrapper = Styled.div(({moveOn, isBtn})=>`
+const Wrapper = Styled.div(({moveOn, isBtn, screen})=>`
     position: fixed;
     height: 100%;
     width: 100%;
@@ -65,20 +65,20 @@ const Wrapper = Styled.div(({moveOn, isBtn})=>`
 
         span{
             filter: opacity(${isBtn ? 0 : 1});
-            transition: 3s;
+            transition: filter 3s;
         }
         
         .mid{
             margin-top: 20px;
             position: absolute;
-            right: 0;
+            ${screen > 600 ? "right: 0" : "left: 16px"};
             display: flex;
             justify-content: flex-end;
             align-items: center;
             z-index: 1;
             filter: opacity(${isBtn ? 1 : 0});
             transition: 2s;
-            transition-delay: 3s;
+            transition-delay: ${screen < 600 ? "1.3s" : "3s"};
         }
     }
     .bg{
@@ -106,7 +106,7 @@ const Wrapper = Styled.div(({moveOn, isBtn})=>`
             font-family: 'Exo2-med';
             font-style: normal;
             font-weight: 600;
-            font-size: 47px;
+            font-size: ${screen > 600 ? "47px" : "20px"};
             line-height: 56px;
             letter-spacing: 4px;
             color: #FFFFFF;
@@ -115,9 +115,12 @@ const Wrapper = Styled.div(({moveOn, isBtn})=>`
     }
     .imgastro{
         position: absolute;
-        top: -60%;
+        top: ${screen < 600 ? "-10%" : "-60%"};
         left: ${moveOn ? '190%' : '-10%'};
-        transition: 17s;
+        transition: left 17s;
+        ${screen < 600 ? "width: 42px; height: 72px;" : ""}
+        
+
     }
     .opac0{
         filter: opacity(0);
@@ -125,30 +128,31 @@ const Wrapper = Styled.div(({moveOn, isBtn})=>`
 
     .textbox{
         position: absolute;
-        overflow: hidden;
+        overflow: ${isBtn ? "" : "hidden"};
         p{
             font-family: 'Exo2-med';
             font-style: normal;
             font-weight: 600;
-            font-size: 47px;
+            font-size: ${screen > 600 ? "47px" : "20px"};
             line-height: 56px;
+            filter: opacity(${isBtn && screen < 600 ? "0" : "1"});
             letter-spacing: 4px;
             color: #FFFFFF;
             margin: 0;
             position: relative;
             top: 0;
             left: ${moveOn ? "0" : "80%" };
-            transition: 4s;
-            transition-delay: 1s;
+            transition: left 4s, filter 1.5s;
+            transition-delay: left 1s;
         }
         .hider{
             background-color: #050216;
-            height: 100%;
+            height: ${screen > 600 ? "100%" : "70%"};
             width: 100%;
             position: absolute;
             top: 0;
             left: ${moveOn ? "200%" : 0 };
-            transition: 17s;
+            transition: left 17s;
             transition-delay:0.25s;
         }
     }

@@ -35,7 +35,10 @@ justify-content: center;
 align-items: center;
 color: white;
 background-image: url('/img/mission/bg-crewmate.svg');
-    
+background-position: top left;
+background-size: cover;
+background-repeat: no-repeat;
+
 .planetnongol{
     position: fixed;
     bottom: 0;

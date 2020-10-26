@@ -69,6 +69,9 @@ const Wrapper = Styled.div(({planetID}) =>`
     align-items: center;
     color: white;
     background-image: url('/img/mission/bg-crewmate.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     padding-left: 88px;
 
     .samar{

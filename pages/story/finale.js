@@ -10,17 +10,17 @@ const Finale = () => {
 
     useEffect(() => {
         setScreen(window.innerWidth);
-        window.addEventListener('resize', setScreen(window.innerWidth));
+        window.addEventListener('resize', handleWindowSizeChange);
 
         setmoveOn(true)
             setTimeout(() => {
                 setisBtn(true)
             }, 7000);
-    });
-
-    useEffect(() => {
-            
     })
+
+    const handleWindowSizeChange = () => {
+        setScreen(window.innerWidth);
+    };
 
     return (
         <Wrapper moveOn={moveOn} isBtn={isBtn} screen={screen}>

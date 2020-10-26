@@ -10,11 +10,10 @@ const Index = () => {
 
     useEffect(() => {
         setScreen(window.innerWidth);
-        console.log(screen);
 
         window.addEventListener('resize', handleWindowSizeChange);
     });
-
+    
     const handleWindowSizeChange = () => {
         setScreen(window.innerWidth);
     };

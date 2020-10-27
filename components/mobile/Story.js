@@ -42,13 +42,14 @@ const Wrapper = Styled.div(({pageId, cover, coverdelay}) =>`
         top: 0;
         height: 100%;
         width: 100%;
-        background-image: url('img/cover/story-m.svg');
+        background: #050216 url('img/cover/story-m.svg');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
         filter: opacity(${cover ? '1' : '0'});
         transition: filter 2s;
         ${coverdelay ? '' : 'display: none;'}
+        z-index: 10;
       }
 
     div.content{

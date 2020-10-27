@@ -14,12 +14,15 @@ const Index = () => {
         setScreen(window.innerWidth);
         window.addEventListener('resize', handleWindowSizeChange);
         
-        setTimeout(() => {
-            setcover(false)
+        window.addEventListener("load", () => {
             setTimeout(() => {
-                setcoverdelay(false)
-            }, 2000);
-        }, 1000);
+                setcover(false)
+                setTimeout(() => {
+                    setcoverdelay(false)
+                }, 2000);
+            }, 1000);
+        });
+
     }, []);
     
     const handleWindowSizeChange = () => {
@@ -115,13 +118,14 @@ padding-bottom: 5%;
     top: 0;
     height: 100%;
     width: 100%;
-    background-image: url('img/cover/story.svg');
+    background: #050216 url('img/cover/story.svg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     filter: opacity(${cover ? '1' : '0'});
     transition: filter 2s;
     ${coverdelay ? '' : 'display: none;'}
+    z-index: 10;
   }
 
 .mvgbg{

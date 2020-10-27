@@ -50,8 +50,12 @@ const Index = ({titleFade}) => {
                 </div>
 
                 <div className="menubar">
-                    <div className="menupop" onClick={()=> setisOpen(true)}>
-                        <p>MENU</p>
+                    <div className="popcontainer">
+                        <div className="edger e-l"></div>
+                        <div className="menupop" onClick={()=> setisOpen(true)}>
+                            <p>MENU</p>
+                        </div>
+                        <div className="edger e-r"></div>
                     </div>
                     <div className="menulist">
                         <div className="close" onClick={()=> setisOpen(false)}>
@@ -99,7 +103,7 @@ const Wrapper = Styled.div(({titleFade, isOpen})=>`
         position: fixed;
         bottom: ${isOpen ? "0" : "calc(-100% + 1px)"};
         width: 100%;
-        height: calc(100% + 56px);
+        height: calc(100% + 54px);
         transition: 1s;
         
         display: flex;
@@ -107,19 +111,43 @@ const Wrapper = Styled.div(({titleFade, isOpen})=>`
         align-items: center;
         flex-direction: column;
         
-        .menupop{
+        .popcontainer{
+            position: relative;
+            width: calc(78% + 28px);
+            height: 54px;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 67px;
-            width: 350px;
-            background-image: url('img/menubar.svg');
-            background-size: cover;
-            background-position: center bottom;
-            background-repeat: no-repeat;
+            min-width: 336px;
 
-            p{
-                transition: 1s;
+            .edger{
+                width: 15.27px;
+                height: 100%;
+                background-image: url('img/edger.svg');
+            }
+            .e-r{
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position: bottom left;
+            }
+            .e-l{
+                transform: scaleX(-1);
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position: bottom right;
+            }
+            .menupop{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, #000000 100%);
+                border-radius: 16px 16px 0 0;
+                
+                p{
+                    transition: 1s;
+                }
             }
         }
         .menulist{
@@ -171,9 +199,10 @@ const Wrapper = Styled.div(({titleFade, isOpen})=>`
                     align-items: center;
                     transition: 0.25s;
 
-                    &:hover{
+                    &:hover, &:focus{
                         color : #F29C1F;
                         font-weight: bold;
+                        transform: scale(1.1);
                     }
                 }
             }

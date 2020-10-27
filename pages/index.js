@@ -14,9 +14,10 @@ const Index = () => {
     setTimeout(() => {
       document.addEventListener("load", settitleFade(1));
     }, 500);
-
+    
+    console.log(document.getElementById('cover'));
     window.addEventListener('resize', handleWindowSizeChange);
-  });
+  }, []);
 
   const handleWindowSizeChange = () => {
     setScreen(window.innerWidth);
@@ -34,26 +35,16 @@ const Index = () => {
             : <h1>SPACE <br/> <span className="delay">PROGRAM</span></h1>}
           </div>
 
-          { (screen > 1150) ? 
           <div className="lower">
-            <Notifier text="Siap untuk menjalankan misinya? simak kisahnya dahulu..." position={1} /> 
-            <div className="fourbtn">
+            {screen > 1150 ? <Notifier text="Siap untuk menjalankan misinya? simak kisahnya dahulu..." position={1}/> : ''}
+            <div className={`fourbtn ${screen < 1150 ? 'fourbtn-medscreen' : ''}`}>
               <div className="hoverer hvr-gold"><Link href="/story"><button style={{backgroundImage: "url('/img/fourbtn/story.svg')"}}>STORY</button></Link ></div>
               <div className="hoverer hvr-pink"><Link href="/mission"><button style={{backgroundImage: "url('/img/fourbtn/mission.svg')"}}>MISSION</button></Link ></div>
               <div className="hoverer hvr-blue"><Link href="/check-in"><button style={{backgroundImage: "url('/img/fourbtn/checkin.svg')"}}>CHECK-IN</button></Link ></div>
               <div className="hoverer hvr-green"><Link href="/progress"><button style={{backgroundImage: "url('/img/fourbtn/progress.svg')"}}>PROGRESS</button></Link ></div>
             </div>
           </div>
-          :
-          <div className="lower">
-            <div className="fourbtn fourbtn-medscreen">
-              <div className="hoverer hvr-gold"><Link href="/story"><button style={{backgroundImage: "url('/img/fourbtn/story.svg')"}}>STORY</button></Link ></div>
-              <div className="hoverer hvr-pink"><Link href="/mission"><button style={{backgroundImage: "url('/img/fourbtn/mission.svg')"}}>MISSION</button></Link ></div>
-              <div className="hoverer hvr-blue"><Link href="/check-in"><button style={{backgroundImage: "url('/img/fourbtn/checkin.svg')"}}>CHECK-IN</button></Link ></div>
-              <div className="hoverer hvr-green"><Link href="/progress"><button style={{backgroundImage: "url('/img/fourbtn/progress.svg')"}}>PROGRESS</button></Link ></div>
-            </div>
-          </div>
-          }
+          
         </div>
         <img className="fullfill astro-prx" src="/img/prx/astro-prx.svg" alt=""/>
         <img className="fullfill sun-prx" src="/img/prx/sun-prx.svg" alt=""/>
@@ -71,7 +62,6 @@ const Index = () => {
         </div>
 
       </Wrapper>
-
     </Backlayer>
   )}else{
   return (
@@ -81,6 +71,17 @@ const Index = () => {
 }
 
 const Notifier = ({text, position}) => {
+  const [screenH, setscreenH] = useState(undefined)
+
+  useEffect(() => {
+    setscreenH(window.innerHeight);
+    window.addEventListener('resize', handleWindowSizeChange);
+  }, []);
+
+  const handleWindowSizeChange = () => {
+    setscreenH(window.innerHeight);
+  };
+
   return (
     <div className="notif-div">
       <p className="notif-msg">{text}</p>
@@ -92,6 +93,7 @@ const Notifier = ({text, position}) => {
         .notif-div{
           margin-left: ${254*(position-1)}px;
           padding-left: 4px;
+          ${screenH < 574 ? 'display: none;' : ''}
         }
         .notif-msg{
           width: 274px;
@@ -100,10 +102,11 @@ const Notifier = ({text, position}) => {
           font-weight: normal;
           font-size: 16px;
           line-height: 19px;
-
+          
           color: #6E75B7;
         }
         .notif-svg{
+          ${screenH < 600 ? 'display: none;' : ''}
           margin-left: 4px;
         }
       
@@ -329,7 +332,6 @@ const Backlayer = Styled.div`
   width: 100%;
   height: 100%;
   background: linear-gradient(105.16deg, #000000 2.14%, rgba(0, 0, 0, 0) 41.67%);
-
 `
   
 export default Index

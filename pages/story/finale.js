@@ -16,7 +16,7 @@ const Finale = () => {
             setTimeout(() => {
                 setisBtn(true)
             }, 7000);
-    })
+    }, [])
 
     const handleWindowSizeChange = () => {
         setScreen(window.innerWidth);

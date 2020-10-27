@@ -1,9 +1,9 @@
 import React from 'react'
 import Styled from '@emotion/styled'
     
-const Index = ({pageId, content, prevpage, nextpage, tofinale}) => {
+const Index = ({pageId, content, prevpage, nextpage, cover, coverdelay}) => {
     return (
-        <Wrapper pageId={pageId}>
+        <Wrapper pageId={pageId} cover={cover} coverdelay={coverdelay}>
             <div className="content">
                 <div className="img">
                     <img src={`/img/story/${pageId}.svg`} alt=""/>
@@ -19,11 +19,13 @@ const Index = ({pageId, content, prevpage, nextpage, tofinale}) => {
                 </div>
                 <h1>.story</h1>
             </div>
+
+            <div className="coveronload" id="cover"></div>
         </Wrapper>
     );
 }
     
-const Wrapper = Styled.div(({pageId}) =>`
+const Wrapper = Styled.div(({pageId, cover, coverdelay}) =>`
     position: fixed;
     height: 100%;
     width: 100%;
@@ -34,6 +36,20 @@ const Wrapper = Styled.div(({pageId}) =>`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    .coveronload{
+        position: fixed;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background-image: url('img/cover/story-m.svg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        filter: opacity(${cover ? '1' : '0'});
+        transition: filter 2s;
+        ${coverdelay ? '' : 'display: none;'}
+      }
 
     div.content{
         display: flex;

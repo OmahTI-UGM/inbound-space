@@ -5,14 +5,22 @@ import Mobile from '../../components/mobile/Story'
     
 const Index = () => {
     const [pageId, setpageId] = useState(1)
-    const [imgOpac, setimgOpac] = useState(1);
-    const [screen, setScreen] = useState(undefined);
+    const [imgOpac, setimgOpac] = useState(1)
+    const [screen, setScreen] = useState(undefined)
+    const [cover, setcover] = useState(true)
+    const [coverdelay, setcoverdelay] = useState(true)
 
     useEffect(() => {
         setScreen(window.innerWidth);
-
         window.addEventListener('resize', handleWindowSizeChange);
-    });
+        
+        setTimeout(() => {
+            setcover(false)
+            setTimeout(() => {
+                setcoverdelay(false)
+            }, 2000);
+        }, 1000);
+    }, []);
     
     const handleWindowSizeChange = () => {
         setScreen(window.innerWidth);
@@ -42,7 +50,7 @@ const Index = () => {
 
     if(screen > 1080){
         return (
-            <Wrapper pageId={pageId} imgOpac={imgOpac} screen={screen}>
+            <Wrapper pageId={pageId} imgOpac={imgOpac} screen={screen} cover={cover} coverdelay={coverdelay}>
                 <div className="containslide">
                     <div className="slidleft"></div>
                     <div className="img">
@@ -74,16 +82,19 @@ const Index = () => {
                     <img src={`/img/story/4.svg`} alt=""/>
                     <img src={`/img/story/5.svg`} alt=""/>
                 </div>
+
+                
+                <div className="coveronload" id="cover"></div>
             </Wrapper>
         )
     }else{
         return(
-            <Mobile pageId={pageId} content={content} prevpage={prevpage} nextpage={nextpage}/>
+            <Mobile pageId={pageId} content={content} prevpage={prevpage} nextpage={nextpage} cover={cover} coverdelay={coverdelay} />
         )
     }
 }
     
-const Wrapper = Styled.div(({pageId, imgOpac}) =>`
+const Wrapper = Styled.div(({pageId, imgOpac, cover, coverdelay}) =>`
 width: 100%;
 height: 100%;
 position: fixed;
@@ -97,6 +108,21 @@ background-position: left;
 background-size: contain;
 background-repeat: no-repeat;
 padding-bottom: 5%;
+
+
+.coveronload{
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-image: url('img/cover/story.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: opacity(${cover ? '1' : '0'});
+    transition: filter 2s;
+    ${coverdelay ? '' : 'display: none;'}
+  }
 
 .mvgbg{
     z-index: -10;

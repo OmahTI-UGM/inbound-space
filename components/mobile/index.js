@@ -1,10 +1,12 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Styled from '@emotion/styled'
 import Link from 'next/link'
     
 const Index = ({titleFade}) => {
+    const [isOpen, setisOpen] = useState(false);
+
     return (
-        <Wrapper titleFade={titleFade}>
+        <Wrapper titleFade={titleFade} isOpen={isOpen}>
             <BackLayer>
                 <div className="pre-content">
                     <div className="content">
@@ -46,6 +48,26 @@ const Index = ({titleFade}) => {
                         </div>
                     </div>
                 </div>
+
+                <div className="menubar">
+                    <div className="menupop" onClick={()=> setisOpen(true)}>
+                        <p>MENU</p>
+                    </div>
+                    <div className="menulist">
+                        <div className="close" onClick={()=> setisOpen(false)}>
+
+                        </div>
+                        <div className="inner">
+                            <Link href="/timeline"><a>TIMELINE</a></Link>
+                            <div className="garis"></div>
+                            <Link href="/awards"><a>AWARDS</a></Link>
+                            <div className="garis"></div>
+                            <Link href="/about"><a>ABOUT</a></Link>
+                            <div className="garis"></div>
+                            <Link href="/help"><a>HELP</a></Link>
+                        </div>                        
+                    </div>
+                </div>
             </BackLayer>
         </Wrapper>
     );
@@ -53,7 +75,7 @@ const Index = ({titleFade}) => {
 
 
     
-const Wrapper = Styled.div(({titleFade})=>`
+const Wrapper = Styled.div(({titleFade, isOpen})=>`
     position: fixed;
     top: 0;
     left: 0;
@@ -72,6 +94,109 @@ const Wrapper = Styled.div(({titleFade})=>`
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
+
+    .menubar{
+        position: fixed;
+        bottom: ${isOpen ? "0" : "calc(-100% + 1px)"};
+        width: 100%;
+        height: calc(100% + 56px);
+        transition: 1s;
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        
+        .menupop{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 67px;
+            width: 350px;
+            background-image: url('img/menubar.svg');
+            background-size: cover;
+            background-position: center bottom;
+            background-repeat: no-repeat;
+
+            p{
+                transition: 1s;
+            }
+        }
+        .menulist{
+            position: relative;
+            padding-top: 32px;
+            background: black;
+            height: calc(100% + 54px);
+            width: 100%;
+            color: white;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-direction: column;
+            
+            font-family: 'Exo2-lit';
+            font-style: normal;
+            // font-weight: 600;
+            font-size: 25px;
+            line-height: 22px;
+            text-align: center;
+
+            .close{
+                position: absolute;
+                height: 26px;
+                width: 26px;
+                top: 20px;
+                right: 20px;
+
+                background-image: url('img/close.svg');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                filter: opacity(${ isOpen ? "1" : "0"});
+                transition: 1s;
+            }
+            
+            .inner{
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+                flex-direction: column;
+                height: 390px;
+
+                a{
+                    width: 100%;
+                    height: 88px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    transition: 0.25s;
+
+                    &:hover{
+                        color : #F29C1F;
+                        font-weight: bold;
+                    }
+                }
+            }
+
+            .garis{
+                width: 300px;
+                height: 1px;
+                background: #222;
+            }
+        }
+        p{
+            font-family: Exo 2;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 22px;
+            line-height: 26px;
+            text-align: center;
+            letter-spacing: 0.08em;
+            margin: 0;
+
+            color: #FFFFFF;
+        }
+    }
     
     .otherbtn{
         display: flex;

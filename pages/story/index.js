@@ -14,14 +14,12 @@ const Index = () => {
         setScreen(window.innerWidth);
         window.addEventListener('resize', handleWindowSizeChange);
         
-        window.addEventListener("load", () => {
+        setTimeout(() => {
+            setcover(false)
             setTimeout(() => {
-                setcover(false)
-                setTimeout(() => {
-                    setcoverdelay(false)
-                }, 2000);
-            }, 1000);
-        });
+                setcoverdelay(false)
+            }, 2000);
+        }, 1000);
 
     }, []);
     

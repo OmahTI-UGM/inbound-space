@@ -6,14 +6,12 @@ const Index = () => {
     const [coverdelay, setcoverdelay] = useState(true)
     
     useEffect(() => {
-        window.addEventListener("load", () => {
+        setTimeout(() => {
+            setcover(false)
             setTimeout(() => {
-                setcover(false)
-                setTimeout(() => {
-                    setcoverdelay(false)
-                }, 2000);
-            }, 1000);
-        });
+                setcoverdelay(false)
+            }, 2000);
+        }, 1000);
     }, [])
 
     return (

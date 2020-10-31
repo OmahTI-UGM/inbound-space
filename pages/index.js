@@ -38,7 +38,7 @@ background: url('/img/comingsoon.svg'), url('/img/comingbg.svg');
 
 background-position: top, left;
 background-repeat: no-repeat;
-background-size: unset, cover;
+background-size: cover, cover;
 `
   
 export default Index

@@ -5,6 +5,7 @@ import Loadinger from '../components/Loadinger'
 const Index = () => {
   const [beginLoad, setbeginLoad] = useState(false)
   const [date, setdate] = useState("")
+  const [red, setred] = useState(false);
 
   useEffect(() => {
     setbeginLoad(true)
@@ -17,16 +18,23 @@ const Index = () => {
     // To calculate the no. of days between two dates 
     let dayDiffer = timeDiffer / (1000 * 3600 * 24); 
     setdate(Math.trunc(dayDiffer))
-  }, [])
+
+    const interval = setInterval(() => {
+      setred(!red)
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [red])
 
   return (
-    <Wrapper>
+    <Wrapper red={red}>
       <Loadinger beginLoad={beginLoad} date={date}/>
+      <div className="alarmer"></div>
     </Wrapper>
   );
 }
   
-const Wrapper = Styled.div`
+const Wrapper = Styled.div(({red}) => `
 width: 100%;
 height: 100%;
 position: fixed;
@@ -39,6 +47,19 @@ background: url('/img/comingsoon.svg'), url('/img/comingbg.svg');
 background-position: top, left;
 background-repeat: no-repeat;
 background-size: cover, cover;
-`
+
+.alarmer{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-image: url('img/alarmer.svg');
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  filter: opacity(${red ? 1 : 0});
+  transition: 0.5s;
+}
+`)
   
 export default Index

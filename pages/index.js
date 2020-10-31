@@ -17,8 +17,8 @@ const Index = () => {
       
     // To calculate the no. of days between two dates 
     let dayDiffer = timeDiffer / (1000 * 3600 * 24); 
-    setdate(Math.trunc(dayDiffer))
-
+    setdate(Math.trunc(dayDiffer)+1)
+    
     const interval = setInterval(() => {
       setred(!red)
     }, 1000);

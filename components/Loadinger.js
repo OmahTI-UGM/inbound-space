@@ -2,6 +2,8 @@ import React from 'react'
 import Styled from '@emotion/styled'
     
 const Loadinger = ({beginLoad, date}) => {
+    let wordBar
+    
 
     return (
         <Wrapper beginLoad={beginLoad} date={date}>
@@ -9,7 +11,7 @@ const Loadinger = ({beginLoad, date}) => {
                 <div className="loadbar">
                     
                 </div>
-                <p>{date} DAYS TO GO</p>
+                <p>{date == 0 ? "TODAY!!!" : date == 1 ? "IT'S TOMORROW" : date + " DAYS TO GO"}</p>
             </div>
             <p>COMING SOON</p>
         </Wrapper>
@@ -39,7 +41,7 @@ const Wrapper = Styled.div(({beginLoad, date}) =>`
 
         .loadbar{
             margin-left: 4px;
-            width: ${beginLoad ? (4/date)*97 + '%' : "0"};
+            width: ${beginLoad ? 49 + (-date + 8)*6 +'%' : "0"};
             height: 39px;
 
             background: linear-gradient(180deg, #F0C419 26.04%, #EEB114 26.05%);

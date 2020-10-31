@@ -35,6 +35,7 @@ const Wrapper = Styled.div(({beginLoad, date}) =>`
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    z-index: 1;
     
     .borderer{
         position: relative;

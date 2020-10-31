@@ -1,9 +1,18 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Styled from '@emotion/styled'
     
-const Loadinger = ({beginLoad, date}) => {
-    let wordBar
+const Loadinger = ({beginLoad, date}) => {  
+    const [randomer, setrandomer] = useState(Math.floor(Math.random()*5))
     
+    useEffect(() => {
+        const interval = setInterval(() => { 
+            setrandomer(Math.floor(Math.random()*(barWords.length-1)))
+        }, 3000)
+      
+        return () => clearInterval(interval);
+    }, [randomer])
+
+    let barWords = ['SEGERA...', 'NANTIKAN...', 'SIAP-SIAP...', 'SABAR...', 'GA LAMA LAGI...', 'TUNGGU AJA...', 'BENTAR-BENTAR...', 'SEK...', 'NTAR YA...', 'SABARIN AJA...']
 
     return (
         <Wrapper beginLoad={beginLoad} date={date}>
@@ -11,7 +20,7 @@ const Loadinger = ({beginLoad, date}) => {
                 <div className="loadbar">
                     
                 </div>
-                <p>{date == 0 ? "TODAY!!!" : date == 1 ? "IT'S TOMORROW" : date + " DAYS TO GO"}</p>
+                <p>{date == 0 ? "TODAY!!!" : date == 1 ? "SEBENTAR LAGI!" : barWords[randomer]}</p>
             </div>
             <p>COMING SOON</p>
         </Wrapper>

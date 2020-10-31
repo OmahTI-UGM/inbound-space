@@ -4,15 +4,19 @@ import Styled from '@emotion/styled'
 const Index = () => {
     const [cover, setcover] = useState(true)
     const [coverdelay, setcoverdelay] = useState(true)
-    
+    // const handleWindowSizeChange = () => setScreen(window.innerWidth)
+
     useEffect(() => {
+        // setScreen(window.innerWidth)
+        // window.addEventListener('resize', handleWindowSizeChange)
+        
         setTimeout(() => {
             setcover(false)
             setTimeout(() => {
                 setcoverdelay(false)
-            }, 2000);
-        }, 1000);
-    }, [])
+            }, 2000)
+        }, 1000)
+    }, []);
 
     return (
         <Wrapper cover={cover} coverdelay={coverdelay}>
@@ -37,7 +41,7 @@ const Wrapper = Styled.div(({cover, coverdelay}) => `
         top: 0;
         height: 100%;
         width: 100%;
-        background-image: #050216 url('img/cover/mission.svg');
+        background: #050216 url('img/cover/mission.svg');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -45,7 +49,7 @@ const Wrapper = Styled.div(({cover, coverdelay}) => `
         transition: filter 2s;
         ${coverdelay ? '' : 'display: none;'}
         z-index: 10;
-      }
+    }
     
     h1{
         font-family: 'Poppkorn';

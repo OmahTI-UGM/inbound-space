@@ -106,10 +106,7 @@ justify-content: space-evenly;
 align-items: center;
 color: white;
 transition: 1s;
-
-background-position: left;
-background-size: contain;
-background-repeat: no-repeat;
+background: #050216;
 padding-bottom: 5%;
 
 .container-all{
@@ -130,7 +127,7 @@ padding-bottom: 5%;
     top: 0;
     height: 100%;
     width: 100%;
-    background: #050216 url('img/cover/story.svg');
+    background: #050216 url('/img/cover/story.svg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -152,7 +149,9 @@ padding-bottom: 5%;
         left: ${ pageId % 2 != 0 ? '0%' : '-50%'};
         height: 100%;
         width: 2079px;
-        background-image: url('/img/story/movingbg.svg');
+        background: #180F4A url('/img/story/movingbg.svg');
+        background-position: center;
+        background-size: cover;
         background-position: center;
         
         filter: opacity(${coverdelay ? 0 : 1});

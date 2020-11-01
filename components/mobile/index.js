@@ -123,7 +123,7 @@ const Wrapper = Styled.div(({titleFade, isOpen})=>`
             .edger{
                 width: 15.27px;
                 height: 100%;
-                background-image: url('img/edger.svg');
+                background-image: url('/img/edger.svg');
             }
             .e-r{
                 background-repeat: no-repeat;
@@ -176,7 +176,7 @@ const Wrapper = Styled.div(({titleFade, isOpen})=>`
                 top: 20px;
                 right: 20px;
 
-                background-image: url('img/close.svg');
+                background-image: url('/img/close.svg');
                 background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;

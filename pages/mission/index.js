@@ -7,12 +7,17 @@ const Index = () => {
     const [cover, setcover] = useState(true)
     const [coverdelay, setcoverdelay] = useState(true)
     const [teamup, setteamup] = useState(false)
+    const [linegrow, setlinegrow] = useState("0%");
     const handleWindowSizeChange = () => setScreen(window.innerWidth)
 
     useEffect(() => {
         setScreen(window.innerWidth)
         window.addEventListener('resize', handleWindowSizeChange)
         
+        setTimeout(() => {
+            setlinegrow("100%")
+        }, 1000);
+
         setTimeout(() => {
             setteamup(true)
         }, 8000);
@@ -26,12 +31,12 @@ const Index = () => {
     }, []);
 
     return (
-        <Wrapper cover={cover} coverdelay={coverdelay} screen={screen} teamup={teamup}>
+        <Wrapper cover={cover} coverdelay={coverdelay} screen={screen} teamup={teamup} linegrow={linegrow}>
 
             <div className="layerbg">
                 <div className="container2">
                     <div className="content">
-                        <p>Telah dibentuk 8 tim yang masing-masing nya terdiri dari 5 orang dengan seorang commander di dalamnya</p>
+                        <p className="telahdi">Telah dibentuk 8 tim yang masing-masingnya terdiri dari 5 orang dengan seorang commander di dalamnya</p>
                         <Link href="/mission/crewmates"><button className="next"><p>TEAM LIST</p><svg width="27" height="30" viewBox="0 0 27 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M26 13.2679C27.3333 14.0377 27.3333 15.9622 26 16.732L3.5 29.7224C2.16667 30.4922 0.499999 29.53 0.499999 27.9904L0.5 2.00962C0.5 0.470019 2.16667 -0.492234 3.5 0.277567L26 13.2679Z" fill="#180F4A"/></svg></button></Link>
                     </div>
                     <div className="image">
@@ -44,7 +49,10 @@ const Index = () => {
 
             <div className="container">
                 <div className="content">
-                    <h2>KALIAN ADALAH YANG TERPILIH</h2>
+                    <div className="title">
+                        <h2>KALIAN ADALAH YANG TERPILIH</h2>
+                        <div className="penggaris"></div>
+                    </div>
                     <p>Melalui oprec yang telah kalian lalui, kalian adalah kandidat terbaik untuk menjalankan misi berbahaya ini</p>
                 </div>
             </div>
@@ -55,7 +63,7 @@ const Index = () => {
     );
 }
     
-const Wrapper = Styled.div(({cover, coverdelay, screen, teamup}) => `
+const Wrapper = Styled.div(({cover, coverdelay, screen, teamup, linegrow}) => `
     width: 100%;
     height: 100%;
     position: fixed;
@@ -75,7 +83,7 @@ const Wrapper = Styled.div(({cover, coverdelay, screen, teamup}) => `
         top: 0;
         height: 100%;
         width: 100%;
-        background: #050216 url('/img/cover/mission.svg');
+        background: #050216 url('/img/cover/mission${screen < 792 ? "-m" : ""}.svg');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -93,6 +101,7 @@ const Wrapper = Styled.div(({cover, coverdelay, screen, teamup}) => `
         left: 0;
         opacity: ${teamup ? 1 : 0};
         transition: 1s;
+        transition-delay: 1.5s;
 
         display: flex;
         justify-content: flex-end;
@@ -108,6 +117,7 @@ const Wrapper = Styled.div(({cover, coverdelay, screen, teamup}) => `
             display: flex;
             justify-content: space-between;
             align-items: center;
+            ${ screen < 894 ? "flex-direction: column-reverse;" : ""}
             position: fixed;
             top: 0;
             height: 100%;
@@ -117,8 +127,9 @@ const Wrapper = Styled.div(({cover, coverdelay, screen, teamup}) => `
             
             .image{
                 position: relative;
-                width: 544px;
+                width: ${screen < 894 ? "120%" : "544px"};
                 height: 384px;
+                margin-left: 24px;
                 
                 div{
                     position: absolute;
@@ -131,41 +142,45 @@ const Wrapper = Styled.div(({cover, coverdelay, screen, teamup}) => `
                 }
                 .a{
                     background-image: url('/img/mission/barisanastro/a.svg');
-                    background-size: cover;
+                    background-size: contain;
                     background-position: center;
                     background-repeat: no-repeat;
                     z-index: 10;
-                    transition-delay: 1.5s;
+                    transition-delay: 2.5s;
                 }
                 .b{
                     background-image: url('/img/mission/barisanastro/b.svg');
-                    background-size: cover;
+                    background-size: contain;
                     background-position: center;
                     background-repeat: no-repeat;
                     z-index: 9;
-                    transition-delay: 2s;
+                    transition-delay: 3s;
                 }
                 .c{
                     background-image: url('/img/mission/barisanastro/c.svg');
-                    background-size: cover;
+                    background-size: contain;
                     background-position: center;
                     background-repeat: no-repeat;
                     z-index: 8;
-                    transition-delay: 2.5s;
+                    transition-delay: 3.5s;
                 }
             }
             
             .content{
-                
-                p{
-                    width: 450px;
+                ${screen < 894 ? "display: flex; justify-content: center; align-items: center; flex-direction: column;" : ""}
+                p.telahdi{
+                    max-width: 450px;
                     font-family: "Exo2-lit";
                     font-style: normal;
                     font-weight: 600;
-                    font-size: 33px;
-                    line-height: 40px;
-                    
+                    font-size: ${screen < 894 ? "24px" : "33px"};
+                    line-height: ${screen < 894 ? "32px" : "40px"};
+                    ${screen < 894 ? "text-align: center; margin-bottom: 40px;" : ""}
                     color: #FFFFFF;
+                                
+                    opacity: ${teamup ? 1 : 0};
+                    transition: 1s;
+                    transition-delay: 2s;
                 }
                 button.next{
                     height: 52px;
@@ -206,6 +221,8 @@ const Wrapper = Styled.div(({cover, coverdelay, screen, teamup}) => `
         justify-content: ${screen < 972 ? "center" : "flex-start"};
         align-items: ${screen > 972 ? "center" : "flex-start"};
         ${screen < 655 ? "" : screen < 972 ? "padding-top: 60px;" : "" }
+        opacity: ${teamup ? 0 : 1};
+        transition: 1s;
 
         .content{
             ${screen < 655 ? "display: flex;justify-content: center;align-items: center;flex-direction: column;" : ""}
@@ -213,15 +230,28 @@ const Wrapper = Styled.div(({cover, coverdelay, screen, teamup}) => `
             margin-bottom: 60px;
             ${screen < 655 ? "text-align: center;" : "" }
 
-            h2{
-                ${screen < 655 ? "width: 270px; margin-top:60px;" : "" }
-                font-family: 'Exo2-reg';
-                font-style: normal;
-                font-weight: 600;
-                font-size: ${screen < 655 ? "32px" : "41px"};
-                ${screen > 655 ? "line-height: 49px" : ""};
+
+            .title{
+                display: inline-block;
                 
-                color: #A143FF;
+                .penggaris{
+                    height: 4px;
+                    width: ${linegrow};
+                    background: #A143FF;
+                    margin-top: 16px;
+                    transition: 7s ease-in;
+                }
+                h2{
+                    ${screen < 655 ? "width: 270px; margin-top:60px;" : "" }
+                    font-family: 'Exo2-reg';
+                    font-style: normal;
+                    font-weight: 600;
+                    font-size: ${screen < 655 ? "32px" : "41px"};
+                    ${screen > 655 ? "line-height: 49px" : ""};
+                    margin-bottom: 0;
+                    color: #A143FF;
+                    display: inline-block;
+                }
             }
             p{
                 ${screen < 655 ? "width: 319px;": ""}
@@ -230,7 +260,7 @@ const Wrapper = Styled.div(({cover, coverdelay, screen, teamup}) => `
                 font-weight: 600;
                 font-size: ${screen < 655 ? "23px" : "33px"};
                 line-height: ${screen < 655 ? "36px": "40px"};
-                ${screen < 655 ? "margin-top:0;" : ""}
+                ${screen < 655 ? "margin-top:12px;" : ""}
                 
                 color: #FFFFFF;
             }

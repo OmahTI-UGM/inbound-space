@@ -7,13 +7,18 @@ const Index = () => {
     const [pageId, setpageId] = useState(1)
     const [imgOpac, setimgOpac] = useState(1)
     const [screen, setScreen] = useState(undefined)
+    const [screenH, setScreenH] = useState(undefined)
     const [cover, setcover] = useState(true)
     const [coverdelay, setcoverdelay] = useState(true)
     const content = dataStory.pages
-    const handleWindowSizeChange = () => setScreen(window.innerWidth)
+    const handleWindowSizeChange = () => {
+        setScreen(window.innerWidth)
+        setScreenH(window.innerHeight)
+    }
 
     useEffect(() => {
         setScreen(window.innerWidth)
+        setScreenH(window.innerHeight)
         window.addEventListener('resize', handleWindowSizeChange)
         
         setTimeout(() => {
@@ -48,7 +53,7 @@ const Index = () => {
 
     if(screen > 1080){
         return (
-            <Wrapper pageId={pageId} imgOpac={imgOpac} screen={screen} cover={cover} coverdelay={coverdelay}>
+            <Wrapper pageId={pageId} imgOpac={imgOpac} screen={screen} cover={cover} coverdelay={coverdelay} screenH={screenH}>
                 <div className="container-all">
                     <div className="containslide">
                         <div className="slidleft"></div>
@@ -96,7 +101,7 @@ const Index = () => {
     }
 }
     
-const Wrapper = Styled.div(({pageId, imgOpac, cover, coverdelay}) =>`
+const Wrapper = Styled.div(({pageId, imgOpac, cover, coverdelay, screenH}) =>`
 width: 100%;
 height: 100%;
 position: fixed;
@@ -145,10 +150,10 @@ padding-bottom: 5%;
     height: 100%;
     width: 100%;
     .bg{
-        position: relative;
+        position: absolute;
         left: ${ pageId % 2 != 0 ? '0%' : '-50%'};
         height: 100%;
-        width: 2079px;
+        width: ${screenH * 3.1}px;
         background: #180F4A url('/img/story/movingbg.svg');
         background-position: center;
         background-size: cover;

@@ -102,18 +102,19 @@ const Wrapper = Styled.div(({cover, coverdelay, screen, teamup, linegrow}) => `
         opacity: ${teamup ? 1 : 0};
         transition: 1s;
         transition-delay: 1.5s;
-
+        
         display: flex;
-        justify-content: flex-end;
+        justify-content: ${ screen < 894 ? "center" : "flex-end"};
         align-items: center;
         background-image: url('/img/mission/bg-teamup.svg');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
         z-index: 1;
-
+        
         
         .container2{
+            min-width: 246px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -121,9 +122,9 @@ const Wrapper = Styled.div(({cover, coverdelay, screen, teamup, linegrow}) => `
             position: fixed;
             top: 0;
             height: 100%;
-            width: 85%;
+            width: ${ screen < 894 ? "70%" : "85%"};
             padding-bottom: 60px;
-            padding-right: 82px;
+            ${ screen > 894 ? "padding-right: 82px;" : ""}
             
             .image{
                 position: relative;

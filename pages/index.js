@@ -15,7 +15,6 @@ const Index = () => {
       document.addEventListener("load", settitleFade(1));
     }, 500);
     
-    console.log(document.getElementById('cover'));
     window.addEventListener('resize', handleWindowSizeChange);
   }, []);
 

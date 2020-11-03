@@ -182,9 +182,9 @@ const Wrapper = Styled.div(({screen}) =>`
         .taskbox2{
             min-width: 316px;
             width: 100%;
-            height: 159.86px;
+            height: 180px;
             border-radius: 8px;
-            background-image: url('/img/mission/taskbox.svg');
+            background-image: url('/img/mission/taskbox-m.svg');
             background-size: cover;
             background-position: right;;
             background-repeat: no-repeat;

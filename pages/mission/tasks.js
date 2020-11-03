@@ -60,7 +60,7 @@ const Tasks = () => {
                             <p>Diberikan waktu satu bulan untuk membangun roketmu. Setiap minggunya akan ada progress report untuk saling mempresentasikan perkembangan project</p>
                         </div>
                         <div className="boxer">
-                            <p>Di akhir nanti akan ada malam penghargaan bagi yang berhasil menyelesaikan dan penentuan team terbaik serta planet yang menjadi tujuan umat manusia mengungsi</p>
+                            <p>Di akhir nanti akan ada malam penghargaan (awarding) dan penentuan team terbaik serta planet yang menjadi tujuan umat manusia mengungsi</p>
                         </div>
                     </>
                     }
@@ -80,7 +80,7 @@ const Tasks = () => {
                     {taskID == 4 &&
                     <>
                         <div className="boxer">
-                            <img class="tumblr" src="/img/mission/tasks/emermeeting.png" alt=""/>
+                            <img class="tumblr" src={`/img/mission/tasks/emermeeting${screen < 1002 ? "-m" : ""}.png`} alt=""/>
                             <p>Tiap team diwajibkan untuk membuat gmeet sebagai tempat bagi team kalian untuk bahas project</p>
                         </div>
                         <div className="boxer">
@@ -94,7 +94,7 @@ const Tasks = () => {
                     {taskID == 5 &&
                     <>
                         <div className="boxer">
-                            <img class="tumblr" src="/img/mission/tasks/bigmeet.png" alt=""/>
+                            <img class="tumblr" src={`/img/mission/tasks/bigmeet${screen < 1002 ? "-m" : ""}.png`} alt=""/>
                             <p>Setiap sabtu akan ada meeting bersama semua team dan panitia serta juri untuk membahas perkembangan project</p>
                         </div>
                         <div className="boxer">
@@ -109,14 +109,21 @@ const Tasks = () => {
                     <>
                         <div className="boxer columnbox">
                             <p>Setelah dikerjakan selama satu bulan, di akhir nanti akan ada awarding untuk tiap kategori di atas. Pastikan team kalian menjadi pemenangnya, ya! (dapet hadiah)</p>
-                            <div className="lebihlanjut">
-                                <p>Keterangan tiap kategori bisa dilihat di</p>
-                                <Link href="/awards"><a>AWARDS</a></Link>
-                            </div>
+                            {screen > 1002 && 
+                                <div className="lebihlanjut">
+                                    <p>Keterangan tiap kategori bisa dilihat di</p>
+                                    <Link href="/awards"><a>AWARDS</a></Link>
+                                </div>
+                            }
                         </div>
                         <div className="boxer pict">
                             <img src="/img/mission/tasks/nomination.svg" alt=""/>
                         </div>
+                        {screen < 1002 &&
+                            <div className="boxer">
+                                <p>Keterangan tiap kategori bisa dilihat di <a href="/awards" className="ckin">/AWARDS</a></p>
+                            </div>
+                        }
                     </>
                     }
                     <div className="pagebtn">
@@ -197,10 +204,7 @@ const Wrapper = Styled.div(({screen}) =>`
             -ms-overflow-style: none;  /* IE and Edge */
             scrollbar-width: none;  /* Firefox */
             
-            // &::-webkit-scrollbar {
-            //     display: none;
-            // }
-
+            
             .boxer{
                 border: 2px solid #FFFFFF;
                 width: 100%;
@@ -212,10 +216,13 @@ const Wrapper = Styled.div(({screen}) =>`
                 align-items: center;
                 padding: 28px 32px;
 
+                ${screen < 1002 ? "flex-direction: column;" : ""}
+
                 img.tumblr{
-                    height: 102px;
-                    width: 102px;
-                    margin-right: 28px;
+                    height: ${screen < 1002 ? "100%" : "102px"};
+                    width: ${screen < 1002 ? "100%" : "102px"};
+                    margin-${screen < 1002 ? "bottom" : "right"}: 28px;
+                    border-radius: 12px;
                 }
 
                 p{
@@ -230,7 +237,7 @@ const Wrapper = Styled.div(({screen}) =>`
                 }
                 .ckin{
                     color: #F0A036;
-
+                    margin: 0 4px;
                     &:hover{
                         text-decoration: underline;
                     }

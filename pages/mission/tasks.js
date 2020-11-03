@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Styled from '@emotion/styled'
+import Link from 'next/link'
     
 const Tasks = () => {
     const [screen, setScreen] = useState(undefined)
@@ -10,6 +11,11 @@ const Tasks = () => {
         setScreen(window.innerWidth)
         window.addEventListener('resize', handleWindowSizeChange)
     }, []);
+
+    function stateAndTop(){
+        settaskID(taskID + 1);
+        document.getElementById('scrolling').scrollTop = 0;
+    }
     
     return (
         <Wrapper screen={screen}>
@@ -21,7 +27,7 @@ const Tasks = () => {
                     {taskID == 2 && <img src="/img/mission/rocketside.svg" alt=""/>}
                 </div>
 
-                <div className="scrolling">
+                <div className="scrolling" id="scrolling">
                     <div className="taskbox2">
 
                     </div>
@@ -35,23 +41,23 @@ const Tasks = () => {
                             <img src="/img/mission/tasks/namaan.svg" alt=""/>
                         </div>
                         <div className="boxer">
-                            <p>Nama planet akan disubmit pada tahap CHECK IN (13 NOV)</p>
+                            <p>Nama planet disubmit pada <a href="/check-in" class="ckin">/CHECK-IN</a> sebelum 13 NOV</p>
                         </div>
                     </>
                     }
                     {taskID == 2 &&
                     <>
                         <div className="boxer">
-                            <p>INBOUND adalah program bagi anggota baru yang bertujuan untuk memberikan pengalaman mengerjakan projek sebagai team</p>
+                            <p>INBOUND adalah program bagi anggota baru yang bertujuan untuk memberikan pengalaman mengerjakan project sebagai team</p>
                         </div>
                         <div className="boxer">
-                            <p>Projek yang dikerjakan adalah ide kalian sendiri dan itu bisa berupa produk game, mobile app, web dan lain sebagainya sesuai kapabilitas kalian</p>
+                            <p>Project yang dikerjakan adalah ide kalian sendiri dan itu bisa berupa produk game, mobile app, web dan lain sebagainya sesuai kapabilitas kalian</p>
                         </div>
                         <div className="boxer">
-                            <p>Nah dalam kisah ini projek kalian adalah kendaraan kalian (roket) menuju planet masing2 yang mana menentukan keberhasilan misi kalian menyelamatkan umat manusia</p>
+                            <p>Nah dalam kisah ini project kalian adalah roket untuk menuju planet masing2 yang mana menentukan keberhasilan misi kalian menuju planet tersebut</p>
                         </div>
                         <div className="boxer">
-                            <p>Diberikan waktu satu bulan untuk menjalankan misi penting ini. Setiap minggunya akan ada progress report untuk saling mempresentasikan perkembangan proyek</p>
+                            <p>Diberikan waktu satu bulan untuk membangun roketmu. Setiap minggunya akan ada progress report untuk saling mempresentasikan perkembangan project</p>
                         </div>
                         <div className="boxer">
                             <p>Di akhir nanti akan ada malam penghargaan bagi yang berhasil menyelesaikan dan penentuan team terbaik serta planet yang menjadi tujuan umat manusia mengungsi</p>
@@ -66,41 +72,56 @@ const Tasks = () => {
                         <div className="boxer pict">
                             <img src="/img/mission/tasks/rocketnaming.svg" alt=""/>
                         </div>
+                        <div className="boxer">
+                            <p>Nama roket disubmit pada <a href="/check-in" className="ckin">/CHECK-IN</a> sebelum 13 NOV</p>
+                        </div>
                     </>
                     }
                     {taskID == 4 &&
                     <>
                         <div className="boxer">
-                            <p>SETIAP TEAM TELAH MENDAPAT NAMA PLANET,  KEMUDIAN BUATLAH SINGKATAN LUCU DARI NAMA PLANET KAMU</p>
+                            <img class="tumblr" src="/img/mission/tasks/emermeeting.png" alt=""/>
+                            <p>Tiap team diwajibkan untuk membuat gmeet sebagai tempat bagi team kalian untuk bahas project</p>
                         </div>
-                        <div className="boxer pict">
-                            <img src="/img/mission/tasks/namaan.svg" alt=""/>
+                        <div className="boxer">
+                            <p>Link gmeet dikumpulkan pada <a href="/check-in" className="ckin">/CHECK-IN</a> sebelum 13 NOV. Setiap kali gmeet jangan lupa untuk record dan mencatat notulensi meeting (dikumpulkan setelahnya)</p>
+                        </div>
+                        <div className="boxer">
+                            <p>Selama menjalankan misi, kalian punya pendamping seorang mantan astronot yang akan membimbing dan memberi semangat</p>
                         </div>
                     </>
                     }
                     {taskID == 5 &&
                     <>
                         <div className="boxer">
-                            <p>SETIAP TEAM TELAH MENDAPAT NAMA PLANET,  KEMUDIAN BUATLAH SINGKATAN LUCU DARI NAMA PLANET KAMU</p>
+                            <img class="tumblr" src="/img/mission/tasks/bigmeet.png" alt=""/>
+                            <p>Setiap sabtu akan ada meeting bersama semua team dan panitia serta juri untuk membahas perkembangan project</p>
                         </div>
-                        <div className="boxer pict">
-                            <img src="/img/mission/tasks/namaan.svg" alt=""/>
+                        <div className="boxer">
+                            <p>Presentasikan dan ceritakan tentang progress, kendala dan fitur yang akan ditambahkan selanjutnya pada project team kamu</p>
+                        </div>
+                        <div className="boxer">
+                            <p>Juri akan mencatat dan menilai kinerja kalian, serta memberikan kritik, saran dan solusi atas kendala yang kalian alami</p>
                         </div>
                     </>
                     }
                     {taskID == 6 &&
                     <>
-                        <div className="boxer">
-                            <p>SETIAP TEAM TELAH MENDAPAT NAMA PLANET,  KEMUDIAN BUATLAH SINGKATAN LUCU DARI NAMA PLANET KAMU</p>
+                        <div className="boxer columnbox">
+                            <p>Setelah dikerjakan selama satu bulan, di akhir nanti akan ada awarding untuk tiap kategori di atas. Pastikan team kalian menjadi pemenangnya, ya! (dapet hadiah)</p>
+                            <div className="lebihlanjut">
+                                <p>Keterangan tiap kategori bisa dilihat di</p>
+                                <Link href="/awards"><a>AWARDS</a></Link>
+                            </div>
                         </div>
                         <div className="boxer pict">
-                            <img src="/img/mission/tasks/namaan.svg" alt=""/>
+                            <img src="/img/mission/tasks/nomination.svg" alt=""/>
                         </div>
                     </>
                     }
                     <div className="pagebtn">
                         <button onClick={()=> taskID > 1 ? settaskID(taskID - 1) : "" } className={`${taskID > 0 ? "" : "samar"} prev`}><svg width="25" height="28" viewBox="0 0 25 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.75001 16.1651C1.08333 15.2028 1.08334 12.7972 2.75 11.8349L19.25 2.30866C20.9167 1.34641 23 2.54922 23 4.47372L23 23.5263C23 25.4508 20.9167 26.6536 19.25 25.6913L2.75001 16.1651Z" stroke="white" stroke-width="3"/></svg></button>
-                        <button onClick={()=> {taskID < 6 ? () => {settaskID(taskID + 1)} : location.href='/mission'}} className="next"><p>NEXT</p><svg width="27" height="30" viewBox="0 0 27 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M26 13.2679C27.3333 14.0377 27.3333 15.9622 26 16.732L3.5 29.7224C2.16667 30.4922 0.499999 29.53 0.499999 27.9904L0.5 2.00962C0.5 0.470019 2.16667 -0.492234 3.5 0.277567L26 13.2679Z" fill="#180F4A"/></svg></button>
+                        <button onClick={()=> {taskID < 6 ? stateAndTop() : location.href='/mission'}} className="next"><p>NEXT</p><svg width="27" height="30" viewBox="0 0 27 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M26 13.2679C27.3333 14.0377 27.3333 15.9622 26 16.732L3.5 29.7224C2.16667 30.4922 0.499999 29.53 0.499999 27.9904L0.5 2.00962C0.5 0.470019 2.16667 -0.492234 3.5 0.277567L26 13.2679Z" fill="#180F4A"/></svg></button>
                     </div>
                 </div>
             </div>
@@ -176,9 +197,9 @@ const Wrapper = Styled.div(({screen}) =>`
             -ms-overflow-style: none;  /* IE and Edge */
             scrollbar-width: none;  /* Firefox */
             
-            &::-webkit-scrollbar {
-                display: none;
-            }
+            // &::-webkit-scrollbar {
+            //     display: none;
+            // }
 
             .boxer{
                 border: 2px solid #FFFFFF;
@@ -186,6 +207,16 @@ const Wrapper = Styled.div(({screen}) =>`
                 box-sizing: border-box;
                 border-radius: 8px;
                 margin-bottom: 36px;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                padding: 28px 32px;
+
+                img.tumblr{
+                    height: 102px;
+                    width: 102px;
+                    margin-right: 28px;
+                }
 
                 p{
                     font-family: 'Exo2-reg';
@@ -193,12 +224,63 @@ const Wrapper = Styled.div(({screen}) =>`
                     font-weight: normal;
                     font-size: 22px;
                     line-height: 30px;
-                    margin: 28px 32px;
                     color: #FFFFFF;
+                    margin: 0;
+                }
+                .ckin{
+                    color: #F0A036;
+
+                    &:hover{
+                        text-decoration: underline;
+                    }
+                }
+            }
+            .columnbox{
+                flex-direction: column;
+                align-items: flex-start;
+                
+                .lebihlanjut{
+                    height: 60px;
+                    width: 100%;
+                    background: rgba(255, 255, 255, 0.1);
+                    border-radius: 8px;
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 0 12px 0 22px;
+                    margin-top: 40px;
+
+                    a{
+                        width: 139px;
+                        height: 41px;
+                        left: 1094px;
+                        top: 481px;
+
+                        background: #FFFFFF;
+                        border-radius: 6px;
+
+                        font-family: 'Exo2-med';
+                        font-style: normal;
+                        font-weight: bold;
+                        font-size: 24px;
+                        line-height: 34px;
+                        text-align: center;
+
+                        color: #050216;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                    
+                    p{
+                        margin: 0;
+                    }
                 }
             }
             .pict{
                 border: none;
+                padding: 0;
                 img{
                     width: 100%;
                 }

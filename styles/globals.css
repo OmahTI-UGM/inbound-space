@@ -40,3 +40,20 @@ a {
   font-family: "Exo2-el";
   src: url("/typefaces/Exo2-ExtraLight.otf");
 }
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.1) #050216;
+}
+
+/* Works on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 52px;
+}
+*::-webkit-scrollbar-track {
+  background: #050216;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(255,255,255,0.05);
+  border-radius: 20px;
+  border: 24px solid #050216;
+}

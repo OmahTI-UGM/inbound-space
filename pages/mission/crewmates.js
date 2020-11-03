@@ -41,7 +41,7 @@ const Crewmate = () => {
                             <p>{crews[planetID].names[1]}</p>
                             <p>{crews[planetID].names[2]}</p>
                             <p>{crews[planetID].names[3]}</p>
-                            <p>{crews[planetID].names[4]}</p>
+                            <p className={crews[planetID].names[4] == "blank" ? "blank" : ""}>{crews[planetID].names[4]}</p>
                         </div>
                     </div>
                     <div className="pagebtn">
@@ -74,6 +74,9 @@ const Wrapper = Styled.div(({planetID}) =>`
     background-size: cover;
     padding-left: 88px;
 
+    .blank{
+        opacity: 0;
+    }
     .samar{
         filter: opacity(0.2);
     }

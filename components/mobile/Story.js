@@ -151,6 +151,10 @@ const Wrapper = Styled.div(({pageId, cover, coverdelay}) =>`
     button.prev{
         width: 44px;
         height: 34px;
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
     
         background: none;
         border: 2px solid #FFFFFF;

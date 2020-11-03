@@ -144,7 +144,9 @@ background-repeat: no-repeat;
         box-sizing: border-box;
         border-radius: 8px;
         margin-right: 8px;
-        display: unset;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         transition: 1s;
         
         &:focus{

@@ -35,7 +35,7 @@ const Tasks = () => {
                     {taskID == 1 &&
                     <>
                         <div className="boxer">
-                            <p>Setiap team telah mendapat nama planet, <br/> kemudian buatlah singkatan lucu dan menarik dari nama planet team kamu</p>
+                            <p>Setiap team telah mendapat nama planet, kemudian buatlah singkatan lucu dan menarik dari nama planet team kamu</p>
                         </div>
                         <div className="boxer pict">
                             <img src="/img/mission/tasks/namaan.svg" alt=""/>
@@ -222,10 +222,11 @@ const Wrapper = Styled.div(({screen}) =>`
                     font-family: 'Exo2-reg';
                     font-style: normal;
                     font-weight: normal;
-                    font-size: 22px;
-                    line-height: 30px;
+                    font-size: ${screen < 1002 ? "18px" : "22px"};
+                    line-height: ${screen < 1002 ? "25px" : "30px"};
                     color: #FFFFFF;
                     margin: 0;
+                    
                 }
                 .ckin{
                     color: #F0A036;

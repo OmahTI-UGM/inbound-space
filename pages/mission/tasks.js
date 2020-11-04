@@ -61,7 +61,7 @@ const Tasks = () => {
         <Wrapper screen={screen} red={red} popup={popup}>
             <div className="popup-con">
                 <div className="popup">
-                    <p>IN ORDER TO SUCCEED THE MISSION DO THIS TASKS</p>
+                    <p>UNTUK MENYELESAIKAN MISI KERJAKAN SEMUA TASK</p>
                 </div>
                 <button onClick={() => setpopup(false)}>OK SIAP!</button>
             </div>

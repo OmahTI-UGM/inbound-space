@@ -147,7 +147,7 @@ const Tasks = () => {
                     {taskID == 6 &&
                     <>
                         <div className="boxer columnbox">
-                            <p>Setelah dikerjakan selama satu bulan, di akhir nanti akan ada awarding untuk tiap kategori di atas. Pastikan team kalian menjadi pemenangnya, ya! (dapet hadiah)</p>
+                            <p>Setelah dikerjakan selama satu bulan, di akhir nanti akan ada awarding untuk tiap kategori di bawah. Pastikan team kalian menjadi pemenangnya, ya! (dapet hadiah)</p>
                             {screen > 1002 && 
                                 <div className="lebihlanjut">
                                     <p>Keterangan tiap kategori bisa dilihat di</p>

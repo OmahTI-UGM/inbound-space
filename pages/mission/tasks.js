@@ -1,46 +1,74 @@
 import React, { useEffect, useState } from 'react'
 import Styled from '@emotion/styled'
 import Link from 'next/link'
+
+const TaskList = ({taskID}) => {
+    const [date, setdate] = useState("-");
+    const [week, setweek] = useState("-");
+
+    useEffect(() => {
+        let date1 = new Date(); 
+        let date2 = new Date("12/6/2020"); 
+        
+        // To calculate the time difference of two dates 
+        let timeDiffer = date2.getTime() - date1.getTime()
+        
+        // To calculate the no. of days between two dates 
+        let dayDiffer = timeDiffer / (1000 * 3600 * 24);
+        setdate(Math.trunc(dayDiffer)-1)
+        let weekDiffer = timeDiffer / (1000 * 3600 * 24 * 7);
+        weekDiffer = -weekDiffer + 4;
+        setweek(Math.trunc(weekDiffer))
+    }, [])
+
+    return (
+        <div className="list-task">
+            <p className={taskID == 1 && "yellow"}>Planet: Buat singkatan</p>
+            <p className={taskID == 2 && "yellow"}>Go to your planet</p>
+            <p className={taskID == 3 && "yellow"}>Rocket: Nama ide projek</p>
+            <p className={taskID == 4 && "yellow"}>Crewmates Meetings (∞)</p>
+            <p className={taskID == 5 && "yellow"}>Progress Report ({week}/4)</p>
+            <p className={taskID == 6 ? "red" : "green"}>FINAL PLANET AWARDING{taskID == 6 && ` (${date}d)`}</p>
+        </div>
+    );
+}
+
     
 const Tasks = () => {
     const [screen, setScreen] = useState(undefined)
     const [taskID, settaskID] = useState(1)
+    const [red, setred] = useState(true)
     const handleWindowSizeChange = () => setScreen(window.innerWidth)
 
     useEffect(() => {
         setScreen(window.innerWidth)
         window.addEventListener('resize', handleWindowSizeChange)
-    }, []);
+
+        const interval = setInterval(() => {
+            setred(!red)
+          }, 1000);
+      
+          return () => clearInterval(interval);
+    }, [red]);
 
     function stateAndTop(){
         settaskID(taskID + 1);
         document.getElementById('scrolling').scrollTop = 0;
     }
 
-    const tasklist = () => {
-        return (
-            <>
-                <p>haha</p>
-                <p>hihi</p>
-                <p>hoho</p>
-                <p>hihe</p>
-            </>
-        );
-    }
-    
     return (
-        <Wrapper screen={screen}>
+        <Wrapper screen={screen} red={red}>
             <div className="container">
                 <div className="task-container">
                     <div className="taskbox">
-                        {tasklist}
+                        <TaskList taskID={taskID} />
                     </div>
                     {taskID == 2 && <img src="/img/mission/rocketside.svg" alt=""/>}
                 </div>
 
                 <div className="scrolling" id="scrolling">
                     <div className="taskbox2">
-                        {tasklist}
+                        <TaskList taskID={taskID} />
                     </div>
 
                     {taskID == 1 &&
@@ -147,7 +175,7 @@ const Tasks = () => {
     );
 }
     
-const Wrapper = Styled.div(({screen}) =>`
+const Wrapper = Styled.div(({screen, red}) =>`
     position: fixed;
     height: 100%;
     width: 100%;
@@ -173,7 +201,8 @@ const Wrapper = Styled.div(({screen}) =>`
         display: flex;
         justify-content: ${screen < 1002 ? "center" :"space-between"};
         align-items: flex-start;
-
+        border: none;
+        
         .task-container{
             ${screen < 1002 ? "display: none;" : ""}
 
@@ -193,6 +222,10 @@ const Wrapper = Styled.div(({screen}) =>`
             background-repeat: no-repeat;
             margin: 20px;
             margin-top: 40px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: flex-start;
+            flex-direction: column;
         }
         .taskbox2{
             min-width: 316px;
@@ -204,7 +237,40 @@ const Wrapper = Styled.div(({screen}) =>`
             background-position: right;;
             background-repeat: no-repeat;
             margin-bottom: 36px;
+            border: none;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: flex-start;
+            flex-direction: column;
             ${screen > 1002 ? "display: none;" : ""}
+            padding-bottom: 20px;
+        }
+        .list-task{
+            padding-left: 24px;
+            p{
+                margin: 0;
+                font-family: Exo2-lit;
+                font-style: normal;
+                font-size: 16px;
+                line-height: 22px;
+                text-shadow: #000 0px 0px 3px,   #000 0px 0px 3px,   #000 0px 0px 3px,
+                             #000 0px 0px 3px,   #000 0px 0px 3px,   #000 0px 0px 3px;
+                color: #FFFFFF;
+                border: none;
+            }
+            .yellow{
+                color: #F0C419;
+                font-family: Exo2-med;
+                text-transform: uppercase;
+            }
+            .green{
+                color: #00EF6E;
+                font-family: Exo2-med;
+            }
+            .red{
+                color: ${red ? "#ED1C24" : "white"};
+                font-family: Exo2-med;
+            }
         }
         .scrolling{
             position: relative;

@@ -8,7 +8,7 @@ const TaskList = ({taskID}) => {
 
     useEffect(() => {
         let date1 = new Date(); 
-        let date2 = new Date("12/6/2020"); 
+        let date2 = new Date("11/29/2020"); 
         
         // To calculate the time difference of two dates 
         let timeDiffer = date2.getTime() - date1.getTime()
@@ -18,7 +18,7 @@ const TaskList = ({taskID}) => {
         setdate(Math.trunc(dayDiffer)-1)
         let weekDiffer = timeDiffer / (1000 * 3600 * 24 * 7);
         weekDiffer = -weekDiffer + 4;
-        setweek(Math.trunc(weekDiffer))
+        setweek(Math.trunc(weekDiffer)-1)
     }, [])
 
     return (
@@ -27,7 +27,7 @@ const TaskList = ({taskID}) => {
             <p className={taskID == 2 && "yellow"}>Go to your planet</p>
             <p className={taskID == 3 && "yellow"}>Rocket: Nama ide projek</p>
             <p className={taskID == 4 && "yellow"}>Crewmates Meetings (∞)</p>
-            <p className={taskID == 5 && "yellow"}>Progress Report ({week}/4)</p>
+            <p className={taskID == 5 && "yellow"}>Progress Report ({week < 0 ? 0 : week}/3)</p>
             <p className={taskID == 6 ? "red" : "green"}>FINAL PLANET AWARDING{taskID == 6 && ` (${date}d)`}</p>
         </div>
     );
@@ -96,7 +96,7 @@ const Tasks = () => {
                             <p>Nah dalam kisah ini project kalian adalah roket untuk menuju planet masing2 yang mana menentukan keberhasilan misi kalian menuju planet tersebut</p>
                         </div>
                         <div className="boxer">
-                            <p>Diberikan waktu satu bulan untuk membangun roketmu. Setiap minggunya akan ada progress report untuk saling mempresentasikan perkembangan project</p>
+                            <p>Diberikan waktu tiga minggu untuk membangun roketmu. Setiap minggunya akan ada progress report untuk saling mempresentasikan perkembangan project</p>
                         </div>
                         <div className="boxer">
                             <p>Di akhir nanti akan ada malam penghargaan (awarding) dan penentuan team terbaik serta planet yang menjadi tujuan umat manusia mengungsi</p>
@@ -134,20 +134,20 @@ const Tasks = () => {
                     <>
                         <div className="boxer">
                             <img class="tumblr" src={`/img/mission/tasks/bigmeet${screen < 1002 ? "-m" : ""}.png`} alt=""/>
-                            <p>Setiap sabtu akan ada meeting bersama semua team dan panitia serta juri untuk membahas perkembangan project</p>
+                            <p>Setiap sabtu akan ada meeting bersama semua team dan anggota OmahTI lainnya untuk membahas perkembangan project</p>
                         </div>
                         <div className="boxer">
                             <p>Presentasikan dan ceritakan tentang progress, kendala dan fitur yang akan ditambahkan selanjutnya pada project team kamu</p>
                         </div>
                         <div className="boxer">
-                            <p>Juri akan mencatat dan menilai kinerja kalian, serta memberikan kritik, saran dan solusi atas kendala yang kalian alami</p>
+                            <p>Kalian akan mendapatkan masukan, kritik, saran dan solusi atas kendala yang kalian alami</p>
                         </div>
                     </>
                     }
                     {taskID == 6 &&
                     <>
                         <div className="boxer columnbox">
-                            <p>Setelah dikerjakan selama satu bulan, di akhir nanti akan ada awarding untuk tiap kategori di bawah. Pastikan team kalian menjadi pemenangnya, ya! (dapet hadiah)</p>
+                            <p>Setelah dikerjakan selama tiga minggu, di akhir nanti akan ada awarding untuk tiap kategori di bawah. Pastikan team kalian menjadi pemenangnya, ya! (dapet hadiah)</p>
                             {screen > 1002 && 
                                 <div className="lebihlanjut">
                                     <p>Keterangan tiap kategori bisa dilihat di</p>

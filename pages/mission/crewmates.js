@@ -22,7 +22,7 @@ const Crewmate = () => {
 
     const planetArray = namaplanet.map( (namaplanet, i = 1) => (
         <div className="eachplanet">
-            <div className={`${ planetID == i ? "zoomed" : "" } ${ planetID > i ? "gone" : "" }`}>
+            <div className={`${ planetID == i ? "zoomed" : "" } ${ planetID > i ? "gone" : "" }`} onClick={()=> setplanetID(i-1)}>
                 <img src={`/img/8planet/${++i}.svg`} alt=""/>
                 <p>{namaplanet}</p>
             </div>

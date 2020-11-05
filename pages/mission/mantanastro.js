@@ -21,7 +21,7 @@ const MantanAstro = () => {
                 <div className="texts">
                     <h3>MANTAN ASTRONAUT</h3>
                     <p>Kamu akan dibimbing seorang mantan astronot sepanjang misimu (non-teknis) Cari tahu siapa orangnya di samping!</p>
-                    <p className="greener">(Segera invite ke grup team)</p>
+                    <p className="greener">(segera invite ke grup team)</p>
                 </div>
                 <div className="card-con">
                     <select name="teamname" id="" onChange={(e) => changeCard(e)}>
@@ -68,6 +68,7 @@ const Wrapper = Styled.div(({planet, screen}) =>`
         background-position: center;
         background-repeat: no-repeat;
         margin-top: 24px;
+        filter: drop-shadow(0px 0px 32px #000000);
     }
     select{
         background: #050216 url('/img/customselect.svg');
@@ -109,22 +110,22 @@ const Wrapper = Styled.div(({planet, screen}) =>`
         height: 100%;
 
         display: flex;
-        justify-content: space-between;
+        justify-content: ${screen < 1068 ? 'flex-start' : 'space-between'};
         align-items: center;
-        ${screen < 1068 && "flex-direction: column;"}
+        ${screen < 1068 ? "flex-direction: column;" : "" }
         
         .texts{
             width: ${screen < 1068 ? "350px":"542px"};
             margin-bottom: 20px;
-            ${screen < 1068 && "text-align: center;"}
+            ${screen < 1068 ? "text-align: center;" : "" }
 
             h3{
                 font-family: 'Exo2-reg';
                 font-style: normal;
                 font-weight: bold;
-                font-size: 37px;
+                font-size: ${screen < 1068 ? "29px" : "37px"};
                 line-height: 44px;
-                margin-top: 0;
+                margin-top: ${screen < 1068 ? "52px" : 0};
 
                 color: #4C973A;
             }
@@ -132,8 +133,8 @@ const Wrapper = Styled.div(({planet, screen}) =>`
                 font-family: 'Exo2-reg';
                 font-style: normal;
                 font-weight: normal;
-                font-size: 28px;
-                line-height: 34px;
+                font-size: ${screen < 1068 ? '18px' : '28px'};
+                line-height: ${screen < 1068 ? '28px' : '34px'};
 
                 color: #FFFFFF;
             }

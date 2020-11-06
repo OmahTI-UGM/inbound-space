@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Styled from '@emotion/styled'
 import { db } from '../../lib/db'
+import OtpInput from 'react-otp-input'
     
 const CheckIn = () => {
     const [planet, setplanet] = useState("")
@@ -9,6 +10,12 @@ const CheckIn = () => {
     const [deskripsi, setdeskripsi] = useState("")
     const [room, setroom] = useState("")
     const [availPlanet, setavailPlanet] = useState([])
+
+    const [isSucceed, setisSucceed] = useState("netral")
+    const [isPopUp, setisPopUp] = useState(false)
+    
+    const [kode, setkode] = useState("")
+
     
     db.collection('teamdata').get().then(function(querySnapshot) {
         let available = []
@@ -18,15 +25,23 @@ const CheckIn = () => {
         setavailPlanet(available)
     });
 
-    const submitCheckIn = async (e) => {
+    
+    const openPopUp = (e) => {
         e.preventDefault()
-        
-        db.collection("teamdata").doc(planet).set({
-                planet: planet,
-                singkatanPlanet: singkatanPlanet,
-                roket: roket,
-                deskripsi: deskripsi,
-                room: room
+        setisPopUp(true)
+    }
+    
+    const submitCheckIn = async () => {        
+        db.collection('kodeluncur').doc(planet).get().then(function(doc) {    
+           const matchCode = doc.data().kode;
+
+           if(kode.toString() == matchCode){
+               db.collection("teamdata").doc(planet).set({
+                   planet: planet,
+                   singkatanPlanet: singkatanPlanet,
+                   roket: roket,
+                   deskripsi: deskripsi,
+                   room: room
             })
             .then(function(e) {
                 console.log("Document successfully written!")
@@ -34,18 +49,23 @@ const CheckIn = () => {
                 setsingkatanPlanet("")
                 setroket("")
                 setdeskripsi("")
-                setroom("")
+                setroom("") 
+                setkode("")
+                setisSucceed("sukses")
             })
             .catch(function(error) {
+                setisSucceed("gagal")
                 console.error("Error writing document: ", error)
             });
+        }
+    })
     }
 
     return (
-        <Wrapper>
+        <Wrapper isPopUp={isPopUp}>
             <div className="container-all">
                 <h1>CHECK-IN</h1>
-                <form onSubmit={(e) => submitCheckIn(e)}>
+                <form onSubmit={(e) => openPopUp(e)}>
                     <div className="each-input">
                         <label for="planet">NAMA PLANET</label>
                         <select value={planet} required name="planet" id="" onChange={(e) => setplanet(e.target.value)}>
@@ -81,11 +101,29 @@ const CheckIn = () => {
                     </div>
                 </form>
             </div>
+
+            <div className="popup">
+                    {isSucceed == "sukses" ? 
+                    <div className="popup-box">
+                        <p>BERHASIL CHECK-IN</p> 
+                    </div>
+                    : isSucceed == "gagal" ?
+                    <div className="popup-box">
+                        <p>GAGAL CHECK-IN</p> 
+                    </div>
+                    :
+                    <div className="popup-box">
+                        <p>KODE PELUNCURAN</p>
+                        <OtpInput value={kode} onChange={(kode) => setkode(kode)} numInputs={6} isInputNum={true} inputStyle={"otp"} focusStyle={"otp-focus"}/>
+                        <button type="submit" onClick={submitCheckIn} className={`check ${kode.length !== 6 ? 'check-off' : ''}`}>CHECK IN NOW</button>
+                    </div>
+                    }
+            </div>
         </Wrapper>
     );
 }
     
-const Wrapper = Styled.div`
+const Wrapper = Styled.div(({isPopUp})=>`
     width: 100%;
     height: 100%;
     position: fixed;
@@ -100,6 +138,60 @@ const Wrapper = Styled.div`
     background-repeat: no-repeat;
     background-size: cover;
 
+    .popup{
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        display: ${isPopUp ? "flex" : "none"};
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+        background: rgba(0,0,0,0.8);
+
+        .popup-box{
+            padding: 28px 0;
+            max-width: 500px;
+            width: 85%;
+            min-width: 320px;
+            background: #04020b;
+            box-shadow: 0 0 12px rgba(255,255,255,0.3);
+            border: 2px solid white;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transition: 0.5s;
+            p{
+                margin: 0;
+                margin-bottom: 24px ;
+                font-family: 'Exo2-reg';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 24px;
+                line-height: 22px;
+                
+                color: #FFFFFF;
+            }
+            .otp{
+                border: none;
+                border-radius: 8px;
+                margin: 4px;
+                width: 42px !important;
+                padding: 10px 0;
+                background: #201938;
+                color: white;
+                font-size: 24px;
+                font-family: 'Exo2-med';
+            }
+            .otp-focus{
+                outline: none;
+                box-shadow: inset 0 0 8px #d61249;
+            }
+        }
+    }
 
     div.button{
         margin-top: 24px;
@@ -108,32 +200,58 @@ const Wrapper = Styled.div`
         justify-content: flex-end;
         align-items: center;
 
-        button.next{
-            height: 42px;
-            padding: 0 8px;
-            
-            background: #FFFFFF;
-            border-radius: 8px;
-            border: 1px solid #FFF;
-            padding-left: 18px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: 1s;
+    }
+    .check-off{
+        height: 0 !important;
+        opacity: 0 !important;
+        color: rgba(0,0,0,0) !important;
+    }
+    .check{
+        height: 52px;
+        opacity: 1;
+        margin-top: 24px;
+        padding: 0 16px;
         
-            p{
-                margin: 0 12px 2px 0;
-                font-family: 'Exo2-med';
-                font-style: normal;
-                font-weight: bold;
-                font-size: 20px;
-                line-height: 34px;
-                color: #180F4A;
-                display: flex;
-                justify-content: space-evenly;
-                align-items: center;
-                display: inline;
-            }
+        background: #dc0f2c;
+        border-radius: 8px;
+        border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 1s;
+
+        font-family: 'Exo2-med';
+        font-style: normal;
+        font-weight: bold;
+        font-size: 20px;
+        line-height: 34px;
+        color: white;
+    }
+    button.next{
+        height: 42px;
+        padding: 0 8px;
+        
+        background: #FFFFFF;
+        border-radius: 8px;
+        border: 1px solid #FFF;
+        padding-left: 18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 1s;
+    
+        p{
+            margin: 0 12px 2px 0;
+            font-family: 'Exo2-med';
+            font-style: normal;
+            font-weight: bold;
+            font-size: 20px;
+            line-height: 34px;
+            color: #180F4A;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            display: inline;
         }
     }
 
@@ -168,7 +286,7 @@ const Wrapper = Styled.div`
                 flex-direction: column;
             }
             label{
-                font-family: Exo 2;
+                font-family: 'Exo2-reg';
                 font-style: normal;
                 font-weight: 500;
                 font-size: 16px;
@@ -250,6 +368,6 @@ const Wrapper = Styled.div`
 
         }
     }
-`
+`)
     
 export default CheckIn

@@ -41,33 +41,30 @@ a {
   src: url("/typefaces/Exo2-ExtraLight.otf");
 }
 
-* {
+#scrolling {
   scrollbar-width: thin;
   scrollbar-color: rgba(255,255,255,0.1) #050216;
 }
 
-/* Works on Chrome/Edge/Safari */
-*::-webkit-scrollbar {
+#scrolling::-webkit-scrollbar {
   width: 52px;
 }
-*::-webkit-scrollbar-track {
+#scrolling::-webkit-scrollbar-track {
   background: #050216;
 }
-*::-webkit-scrollbar-thumb {
+#scrolling::-webkit-scrollbar-thumb {
   background-color: rgba(255,255,255,0.05);
   border-radius: 20px;
   border: 24px solid #050216;
 }
 
 @media only screen and (max-width: 1002px) {
-  /* Hide scrollbar for Chrome, Safari and Opera */
-  *::-webkit-scrollbar {
+  #scrolling::-webkit-scrollbar {
     display: none;
   }
 
-  /* Hide scrollbar for IE, Edge and Firefox */
-  * {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+  #scrolling {
+    -ms-overflow-style: none; 
+    scrollbar-width: none;  
   }
 }

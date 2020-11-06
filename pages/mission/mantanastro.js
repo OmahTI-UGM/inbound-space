@@ -20,7 +20,7 @@ const MantanAstro = () => {
             <div className="container-all">
                 <div className="texts">
                     <h3>MANTAN ASTRONAUT</h3>
-    <p>Kamu akan dibimbing seorang mantan astronot sepanjang misimu (non-teknis) Cari tahu siapa orangnya di {screen < 1068 ? "bawah":"samping"}!</p>
+                    <p>Kamu akan dibimbing seorang mantan astronot sepanjang misimu (non-teknis) Cari tahu siapa orangnya di {screen < 1068 ? "bawah":"samping"}!</p>
                     <p className="greener">(segera invite ke grup team)</p>
                 </div>
                 <div className="card-con">

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Styled from '@emotion/styled'
 import { db } from '../../lib/db'
 import OtpInput from 'react-otp-input'
+import Link from 'next/link'
     
 const CheckIn = () => {
     const [planet, setplanet] = useState("")
@@ -26,6 +27,12 @@ const CheckIn = () => {
     });
 
     
+    const closePopUp = (e) => {
+        setisPopUp(false)
+        setkode("")
+        setisSucceed("netral")
+    }
+
     const openPopUp = (e) => {
         e.preventDefault()
         setisPopUp(true)
@@ -35,30 +42,32 @@ const CheckIn = () => {
         db.collection('kodeluncur').doc(planet).get().then(function(doc) {    
            const matchCode = doc.data().kode;
 
-           if(kode.toString() == matchCode){
-               db.collection("teamdata").doc(planet).set({
-                   planet: planet,
-                   singkatanPlanet: singkatanPlanet,
-                   roket: roket,
-                   deskripsi: deskripsi,
-                   room: room
-            })
-            .then(function(e) {
-                console.log("Document successfully written!")
-                setplanet("")
-                setsingkatanPlanet("")
-                setroket("")
-                setdeskripsi("")
-                setroom("") 
-                setkode("")
-                setisSucceed("sukses")
-            })
-            .catch(function(error) {
+            if(kode.toString() == matchCode){
+                db.collection("teamdata").doc(planet).set({
+                    planet: planet,
+                    singkatanPlanet: singkatanPlanet,
+                    roket: roket,
+                    deskripsi: deskripsi,
+                    room: room
+                })
+                .then(function(e) {
+                    console.log("Document successfully written!")
+                    setplanet("")
+                    setsingkatanPlanet("")
+                    setroket("")
+                    setdeskripsi("")
+                    setroom("") 
+                    setkode("")
+                    setisSucceed("sukses")
+                })
+                .catch(function(error) {
+                    setisSucceed("gagal")
+                    console.error("Error writing document: ", error)
+                });
+            }else{
                 setisSucceed("gagal")
-                console.error("Error writing document: ", error)
-            });
-        }
-    })
+            }
+        })
     }
 
     return (
@@ -103,21 +112,26 @@ const CheckIn = () => {
             </div>
 
             <div className="popup">
+                <div className="popup-box">
+                    <div className="closer" onClick={() => closePopUp()}><svg width="20" height="20" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="68" height="68" rx="12" fill="#DC0F2C"/><path d="M12.0491 12.0491C13.4479 10.6503 15.7159 10.6503 17.1147 12.0491L55.9509 50.8853C57.3497 52.2841 57.3497 54.5521 55.9509 55.9509C54.5521 57.3497 52.2841 57.3497 50.8853 55.9509L12.0491 17.1147C10.6503 15.7159 10.6503 13.4479 12.0491 12.0491Z" fill="white"/><path d="M55.9509 12.0491C57.3497 13.4479 57.3497 15.7159 55.9509 17.1147L17.1147 55.9509C15.7159 57.3497 13.4479 57.3497 12.0491 55.9509C10.6503 54.5521 10.6503 52.2841 12.0491 50.8853L50.8853 12.0491C52.2841 10.6503 54.5521 10.6503 55.9509 12.0491Z" fill="white"/></svg></div>
                     {isSucceed == "sukses" ? 
-                    <div className="popup-box">
-                        <p>BERHASIL CHECK-IN</p> 
-                    </div>
+                      <>
+                        <p>BERHASIL CHECK-IN</p>
+                        <Link href="/progress"><button className="btn-regular">PROGRESS</button></Link>
+                      </>
                     : isSucceed == "gagal" ?
-                    <div className="popup-box">
+                    <>
                         <p>GAGAL CHECK-IN</p> 
-                    </div>
+                        <button className="btn-regular" onClick={() => closePopUp()}>TUTUP</button>
+                      </>
                     :
-                    <div className="popup-box">
+                      <>
                         <p>KODE PELUNCURAN</p>
                         <OtpInput value={kode} onChange={(kode) => setkode(kode)} numInputs={6} isInputNum={true} inputStyle={"otp"} focusStyle={"otp-focus"}/>
                         <button type="submit" onClick={submitCheckIn} className={`check ${kode.length !== 6 ? 'check-off' : ''}`}>CHECK IN NOW</button>
-                    </div>
+                      </>
                     }
+                </div>
             </div>
         </Wrapper>
     );
@@ -137,6 +151,21 @@ const Wrapper = Styled.div(({isPopUp})=>`
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+
+    .btn-regular{
+        border: none;
+        background: #fff;
+        padding: 8px 12px;
+        border-radius: 6px;
+
+        font-family: 'Exo2-eb';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 22px;
+        
+        color: black;
+    }
 
     .popup{
         position: fixed;
@@ -164,6 +193,15 @@ const Wrapper = Styled.div(({isPopUp})=>`
             align-items: center;
             flex-direction: column;
             transition: 0.5s;
+            position: relative;
+
+            .closer{
+                position: absolute;
+                top: 6px;
+                right: 6px;
+                height: 20px;
+                width: 20px;
+            }
             p{
                 margin: 0;
                 margin-bottom: 24px ;

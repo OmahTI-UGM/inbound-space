@@ -15,7 +15,7 @@ const TaskList = ({taskID}) => {
         
         // To calculate the no. of days between two dates 
         let dayDiffer = timeDiffer / (1000 * 3600 * 24);
-        setdate(Math.trunc(dayDiffer)-1)
+        setdate(Math.trunc(dayDiffer))
         let weekDiffer = timeDiffer / (1000 * 3600 * 24 * 7);
         weekDiffer = -weekDiffer + 4;
         setweek(Math.trunc(weekDiffer)-1)
@@ -88,7 +88,7 @@ const Tasks = () => {
                             <img src="/img/mission/tasks/namaan.svg" alt=""/>
                         </div>
                         <div className="boxer">
-                            <p>Nama planet disubmit pada <a href="/check-in" class="ckin">/CHECK-IN</a> sebelum 13 NOV</p>
+                            <p>Nama planet disubmit pada <a href="/check-in" class="ckin">/CHECK-IN</a> maks 11 NOV</p>
                         </div>
                     </>
                     }
@@ -120,7 +120,7 @@ const Tasks = () => {
                             <img src="/img/mission/tasks/rocketnaming.svg" alt=""/>
                         </div>
                         <div className="boxer">
-                            <p>Nama roket disubmit pada <a href="/check-in" className="ckin">/CHECK-IN</a> sebelum 13 NOV</p>
+                            <p>Nama roket disubmit pada <a href="/check-in" className="ckin">/CHECK-IN</a> maks 11 NOV</p>
                         </div>
                     </>
                     }
@@ -131,7 +131,7 @@ const Tasks = () => {
                             <p>Tiap team diwajibkan untuk membuat gmeet sebagai tempat bagi team kalian untuk bahas project</p>
                         </div>
                         <div className="boxer">
-                            <p>Link gmeet dikumpulkan pada <a href="/check-in" className="ckin">/CHECK-IN</a> sebelum 13 NOV. Setiap kali gmeet jangan lupa untuk record dan mencatat notulensi meeting (dikumpulkan setelahnya)</p>
+                            <p>Link gmeet dikumpulkan pada <a href="/check-in" className="ckin">/CHECK-IN</a> maks 11 NOV. Setiap kali gmeet jangan lupa untuk record dan mencatat notulensi meeting (dikumpulkan setelahnya)</p>
                         </div>
                         <div className="boxer">
                             <p>Selama menjalankan misi, kalian punya pendamping seorang mantan astronot yang akan membimbing dan memberi semangat</p>

@@ -2,7 +2,7 @@ import React from 'react'
 import Styled from '@emotion/styled'
 import Link from 'next/link'
     
-const Timeline = () => {
+const Awards = () => {
     return (
         <Wrapper>
             <div className="bodoamat-img"></div>
@@ -60,11 +60,11 @@ background-size: cover;
     width: 80%;
     min-width: 320px;
     height: 309px;
-    background-image: url('/img/tml.svg');
+    background-image: url('/img/awd.svg');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
 }
 `
     
-export default Timeline
+export default Awards

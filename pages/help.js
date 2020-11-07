@@ -5,8 +5,9 @@ import Link from 'next/link'
 const Timeline = () => {
     return (
         <Wrapper>
-            <div className="bodoamat-img"></div>
+            <p>Pertanyaan apapun bisa ditanyakan langsung ke grup line OTI 19/20 atau secara personal melalui lineID: arrobya</p>
             <Link href="/"><button className="btn-regular"><p>KEMBALI</p></button></Link>
+            
         </Wrapper>
     );
 }
@@ -26,6 +27,21 @@ background-image: url('/img/mission/bg-crewmate.svg');
 background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
+
+p{
+    max-width: 485px;
+    width: 80%;
+    min-width: 320px;
+    font-family: 'Exo2-reg';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 28px;
+    line-height: 34px;
+    text-align: center;
+
+    color: #FFFFFF;
+
+}
 
 .btn-regular{
     margin-top: 32px;

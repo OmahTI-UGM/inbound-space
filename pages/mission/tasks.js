@@ -104,7 +104,7 @@ const Tasks = () => {
                             <p>Nah dalam kisah ini project kalian adalah roket untuk menuju planet masing2 yang mana menentukan keberhasilan misi kalian menuju planet tersebut</p>
                         </div>
                         <div className="boxer">
-                            <p>Diberikan waktu tiga minggu untuk membangun roketmu. Setiap minggunya akan ada progress report untuk saling mempresentasikan perkembangan project</p>
+                            <p>Diberikan waktu tiga minggu untuk membangun roketmu. Setiap sabtu akan ada progress report untuk saling mempresentasikan perkembangan project</p>
                         </div>
                         <div className="boxer">
                             <p>Di akhir nanti akan ada malam penghargaan (awarding) dan penentuan team terbaik serta planet yang menjadi tujuan umat manusia mengungsi</p>

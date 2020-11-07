@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Styled from '@emotion/styled'
+import Link from 'next/link'
     
 const MantanAstro = () => {
     const [screen, setScreen] = useState(undefined)
@@ -36,6 +37,10 @@ const MantanAstro = () => {
                         <option value="pluto">PLUTO</option>
                     </select>
                     <div className="swipe-card"></div>
+                    <div className="btn-continue">
+                        <Link href="/mission/finale"><button className="btn-regular"><p>CONTINUE</p><svg width="27" height="30" viewBox="0 0 27 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M26 13.2679C27.3333 14.0377 27.3333 15.9622 26 16.732L3.5 29.7224C2.16667 30.4922 0.499999 29.53 0.499999 27.9904L0.5 2.00962C0.5 0.470019 2.16667 -0.492234 3.5 0.277567L26 13.2679Z" fill="#180F4A"/></svg></button></Link>
+                    </div>
+                      
                 </div>
             </div>
         </Wrapper>
@@ -58,6 +63,40 @@ const Wrapper = Styled.div(({planet, screen}) =>`
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+
+    .btn-continue{
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+    .btn-regular{
+        margin-top: 32px;
+        padding: 8px 8px;
+        
+        background: #FFFFFF;
+        border-radius: 8px;
+        border: 1px solid #FFF;
+        padding-left: 18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 1s;
+        
+        p{
+            margin: 0 12px 2px 0;
+            font-family: 'Exo2-med';
+            font-style: normal;
+            font-weight: bold;
+            font-size: 28px;
+            line-height: 34px;
+            color: #180F4A;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            display: inline;
+        }
+    }
 
     .swipe-card{
         width: 350px;

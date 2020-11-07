@@ -133,7 +133,7 @@ const CheckIn = () => {
                     <div className="button">
                         <button type="submit" className="next"><p>INPUT KODE PELUNCURAN</p><svg width="21" height="24" viewBox="0 0 27 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M26 13.2679C27.3333 14.0377 27.3333 15.9622 26 16.732L3.5 29.7224C2.16667 30.4922 0.499999 29.53 0.499999 27.9904L0.5 2.00962C0.5 0.470019 2.16667 -0.492234 3.5 0.277567L26 13.2679Z" fill="#180F4A"/></svg></button>
                     </div>
-                    <h5>Kode Peluncuran diperlukan untuk check-in, didapat dari challenge yang kalian pecahkan <a className="adown" href="/challenge.rar" download>Download Challenge</a> Setiap team memiliki kode peluncuran yang berbeda dari yang lainnya</h5>
+                    <h5>Kode Peluncuran diperlukan untuk check-in, didapat dari challenge yang kalian pecahkan <a className="adown" href="/challenge.rar" target="_blank" download>Download Challenge</a> Setiap team memiliki kode peluncuran yang berbeda dari yang lainnya</h5>
                 
                 </form>
             </div>

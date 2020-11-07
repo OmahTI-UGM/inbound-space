@@ -98,6 +98,7 @@ const CheckIn = () => {
         <Wrapper isPopUp={isPopUp}>
             <div className="container-all">
                 <h1>CHECK-IN</h1>
+                <h5>Diskusikan persiapanmu dengan team dan lakukan check-in dengan mengisi form dibawah maksimal tanggal 11 Nov</h5>
                 <form onSubmit={(e) => openPopUp(e)}>
                     <div className="each-input">
                         <label for="planet">NAMA PLANET</label>
@@ -132,6 +133,8 @@ const CheckIn = () => {
                     <div className="button">
                         <button type="submit" className="next"><p>INPUT KODE PELUNCURAN</p><svg width="21" height="24" viewBox="0 0 27 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M26 13.2679C27.3333 14.0377 27.3333 15.9622 26 16.732L3.5 29.7224C2.16667 30.4922 0.499999 29.53 0.499999 27.9904L0.5 2.00962C0.5 0.470019 2.16667 -0.492234 3.5 0.277567L26 13.2679Z" fill="#180F4A"/></svg></button>
                     </div>
+                    <h5>Kode Peluncuran diperlukan untuk check-in didapat dari challenge (drive) yang kalian kerjakan. Setiap team memiliki kode peluncuran yang berbeda dari yang lainnya</h5>
+                
                 </form>
             </div>
 
@@ -257,11 +260,25 @@ const Wrapper = Styled.div(({isPopUp})=>`
         }
     }
 
+    h5{
+        margin: 0;
+        margin-bottom: 24px ;
+        font-family: 'Exo2-lit';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 22px;
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 42px;
+        color: #FFFFFF;
+    }
+
     div.button{
         margin-top: 24px;
         width: 100%;
         display: flex;
-        justify-content: flex-end;
+        justify-content: center;
         align-items: center;
 
     }
@@ -303,6 +320,7 @@ const Wrapper = Styled.div(({isPopUp})=>`
         justify-content: center;
         align-items: center;
         transition: 1s;
+        margin-bottom: 20px;
     
         p{
             margin: 0 12px 2px 0;
@@ -338,7 +356,7 @@ const Wrapper = Styled.div(({isPopUp})=>`
             font-weight: 500;
             font-size: 36px;
             line-height: 36px;
-            margin-bottom: 42px;
+            margin-bottom: 20px;
             
             color: #FFFFFF;
             text-transform: uppercase;

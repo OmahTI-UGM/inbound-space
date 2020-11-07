@@ -115,19 +115,19 @@ const CheckIn = () => {
                     </div>
                     <div className="each-input" placeholder="Gabungan kata lucu dari nama planetmu">
                         <label for="singkatanPlanet">SINGKATAN</label>
-                        <input value={singkatanPlanet} required type="text" name="singkatanPlanet" onChange={(e) => setsingkatanPlanet(e.target.value)}/>
+                        <input placeholder="Singkatan lucu nama planetmu" value={singkatanPlanet} required type="text" name="singkatanPlanet" onChange={(e) => setsingkatanPlanet(e.target.value)}/>
                     </div>
                     <div className="each-input">
                         <label for="roket">NAMA ROKET</label>
-                        <input value={roket} required type="text" name="roket" onChange={(e) => setroket(e.target.value)}/>
+                        <input placeholder="Nama ide projekmu" value={roket} required type="text" name="roket" onChange={(e) => setroket(e.target.value)}/>
                     </div>
                     <div className="each-input">
                         <label for="deskripsi">DESKRIPSI ROKET</label>
-                        <textarea value={deskripsi} required name="deskripsi" id="" cols="30" rows="4" onChange={(e) => setdeskripsi(e.target.value)}></textarea>
+                        <textarea placeholder="Penjelasan singkat idemu" value={deskripsi} required name="deskripsi" id="" cols="30" rows="4" onChange={(e) => setdeskripsi(e.target.value)}></textarea>
                     </div>
                     <div className="each-input">
                         <label for="room">GMEET ROOM</label>
-                        <input value={room} required type="text" name="room" onChange={(e) => setroom(e.target.value)}/>
+                        <input placeholder="Link gmeet team kamu" value={room} required type="text" name="room" onChange={(e) => setroom(e.target.value)}/>
                     </div>
                     <div className="button">
                         <button type="submit" className="next"><p>CHECK IN</p><svg width="21" height="24" viewBox="0 0 27 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M26 13.2679C27.3333 14.0377 27.3333 15.9622 26 16.732L3.5 29.7224C2.16667 30.4922 0.499999 29.53 0.499999 27.9904L0.5 2.00962C0.5 0.470019 2.16667 -0.492234 3.5 0.277567L26 13.2679Z" fill="#180F4A"/></svg></button>
@@ -202,6 +202,8 @@ const Wrapper = Styled.div(({isPopUp})=>`
         align-items: center;
         z-index: 10;
         background: rgba(0,0,0,0.8);
+
+        
 
         .popup-box{
             padding: 28px 0;
@@ -322,10 +324,25 @@ const Wrapper = Styled.div(({isPopUp})=>`
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        padding-top: 120px;
+        padding-top: 60px;
+        padding-bottom: 60px;
         max-width: 600px;
         width: 85%;
         min-width: 320px;
+
+        h1{
+            width: 100%;
+            text-align: center;
+            font-family: 'Exo2-med';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 36px;
+            line-height: 36px;
+            margin-bottom: 42px;
+            
+            color: #FFFFFF;
+            text-transform: uppercase;
+        }
         
         form{
             width: 100%;

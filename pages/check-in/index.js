@@ -37,6 +37,28 @@ const CheckIn = () => {
         e.preventDefault()
         setisPopUp(true)
     }
+
+    const getPlanetOrder = (planetName) => {
+
+        switch (planetName) {
+            case "merkurius":
+                return 1;
+            case "venus":
+                return 2;
+            case "mars":
+                return 3;
+            case "jupiter":
+                return 4;
+            case "saturnus":
+                return 5;
+            case "uranus":
+                return 6;
+            case "neptunus":
+                return 7;
+            case "pluto":
+                return 8;
+        }
+    }
     
     const submitCheckIn = async () => {        
         db.collection('kodeluncur').doc(planet).get().then(function(doc) {    
@@ -48,7 +70,9 @@ const CheckIn = () => {
                     singkatanPlanet: singkatanPlanet,
                     roket: roket,
                     deskripsi: deskripsi,
-                    room: room
+                    room: room,
+                    num: getPlanetOrder(planet),
+                    progress: 0
                 })
                 .then(function(e) {
                     console.log("Document successfully written!")

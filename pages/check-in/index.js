@@ -185,10 +185,10 @@ const Wrapper = Styled.div(({isPopUp})=>`
 		font-family: 'Exo2-reg';
                 font-style: normal;
                 font-weight: 500;
-                font-size: 12px;
+                font-size: 12px !important;
                 line-height: 22px;
 		margin: 0px 0 24px 0;
-		text-transform: uppercase;
+		text-transform: uppercase !important;
                 
                 color: #FFFFFF;
 	} 

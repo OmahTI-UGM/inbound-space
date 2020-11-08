@@ -154,7 +154,7 @@ const CheckIn = () => {
                     :
                       <>
                         <p>KODE PELUNCURAN</p>
-			<p className="planet-code">{planet}</p> 
+			            <p className="planet-code">{planet}</p> 
                         <OtpInput value={kode} onChange={(kode) => setkode(kode)} numInputs={6} isInputNum={true} inputStyle={"otp"} focusStyle={"otp-focus"}/>
                         <button type="submit" onClick={submitCheckIn} className={`check ${kode.length !== 6 ? 'check-off' : ''}`}>CHECK IN NOW</button>
                       </>
@@ -181,16 +181,16 @@ const Wrapper = Styled.div(({isPopUp})=>`
     background-size: cover;
 
 
-	.planet-launch{
+	.planet-code{
 		font-family: 'Exo2-reg';
-                font-style: normal;
-                font-weight: 500;
-                font-size: 12px !important;
-                line-height: 22px;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px !important;
+        line-height: 22px;
 		margin: 0px 0 24px 0;
 		text-transform: uppercase !important;
                 
-                color: #FFFFFF;
+        color: #FFFFFF;
 	} 
     .adown{
         color: orange;

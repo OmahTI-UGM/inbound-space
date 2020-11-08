@@ -144,6 +144,7 @@ const CheckIn = () => {
                     {isSucceed == "sukses" ? 
                       <>
                         <p>BERHASIL CHECK-IN</p>
+			<p className="planet-code">{planet}</p>
                         <Link href="/progress"><button className="btn-regular">PROGRESS</button></Link>
                       </>
                     : isSucceed == "gagal" ?
@@ -179,6 +180,17 @@ const Wrapper = Styled.div(({isPopUp})=>`
     background-repeat: no-repeat;
     background-size: cover;
 
+
+	.planet-launch{
+		font-family: 'Exo2-reg';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 22px;
+		padding: 12px 0 24px 0;
+                
+                color: #FFFFFF;
+	} 
     .adown{
         color: orange;
         text-decoration: underline;
@@ -238,7 +250,7 @@ const Wrapper = Styled.div(({isPopUp})=>`
             }
             p{
                 margin: 0;
-                margin-bottom: 24px ;
+                margin-bottom: 0px ;
                 font-family: 'Exo2-reg';
                 font-style: normal;
                 font-weight: 500;

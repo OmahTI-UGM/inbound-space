@@ -187,7 +187,7 @@ const Wrapper = Styled.div(({isPopUp})=>`
                 font-weight: 500;
                 font-size: 16px;
                 line-height: 22px;
-		padding: 12px 0 24px 0;
+		margin: 0px 0 24px 0;
                 
                 color: #FFFFFF;
 	} 
@@ -250,7 +250,7 @@ const Wrapper = Styled.div(({isPopUp})=>`
             }
             p{
                 margin: 0;
-                margin-bottom: 0px ;
+                margin-bottom: 18px ;
                 font-family: 'Exo2-reg';
                 font-style: normal;
                 font-weight: 500;

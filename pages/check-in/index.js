@@ -144,7 +144,6 @@ const CheckIn = () => {
                     {isSucceed == "sukses" ? 
                       <>
                         <p>BERHASIL CHECK-IN</p>
-			<p className="planet-code">{planet}</p>
                         <Link href="/progress"><button className="btn-regular">PROGRESS</button></Link>
                       </>
                     : isSucceed == "gagal" ?
@@ -155,6 +154,7 @@ const CheckIn = () => {
                     :
                       <>
                         <p>KODE PELUNCURAN</p>
+			<p className="planet-code">{planet}</p> 
                         <OtpInput value={kode} onChange={(kode) => setkode(kode)} numInputs={6} isInputNum={true} inputStyle={"otp"} focusStyle={"otp-focus"}/>
                         <button type="submit" onClick={submitCheckIn} className={`check ${kode.length !== 6 ? 'check-off' : ''}`}>CHECK IN NOW</button>
                       </>

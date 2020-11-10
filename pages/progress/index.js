@@ -18,7 +18,6 @@ const Index = () => {
             })
             setcheckedInList(available)
             setteamdata(data)
-            console.log("readP1")
         });
         
         db.collection('prog').orderBy('num', 'asc').get().then(function(querySnapshot) {
@@ -27,7 +26,6 @@ const Index = () => {
                 progdata.push(doc.data().progress)
             })
             setprog(progdata)
-            console.log("readP2")
         });
     }, [])
     

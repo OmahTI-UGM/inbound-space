@@ -24,7 +24,6 @@ const CheckIn = () => {
                 available.push(doc.id)            
             })
             setavailPlanet(available)
-            console.log("read1")
         });
     }, [])    
 
@@ -64,7 +63,6 @@ const CheckIn = () => {
     
     const submitCheckIn = async () => {        
         db.collection('kodeluncur').doc(planet).get().then(function(doc) { 
-            console.log("read2")   
            const matchCode = doc.data().kode;
 
             if(kode.toString() == matchCode){
@@ -78,7 +76,6 @@ const CheckIn = () => {
                     progress: 0
                 })
                 .then(function(e) {
-                    console.log("Document successfully written!")
                     setplanet("")
                     setsingkatanPlanet("")
                     setroket("")

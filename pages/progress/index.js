@@ -79,12 +79,13 @@ const Index = () => {
                         </div>
                     </div>
                 </div>
+                <p className="reportedby"><img src="https://img.icons8.com/pastel-glyph/64/ffffff/info--v1.png"/>&ensp;presentase progress dilaporkan oleh mantan astro</p>
 
                 <div className="prog-detail">
                     <h2>DETAILS</h2>
                     <div className="detail-con">
-                        {teamdata.map((td)=>(
-                            <div className="each-detail">
+                        {teamdata.map((td, i)=>(
+                            <div className="each-detail" key={i}>
                                 <div className="planetimg" style={{backgroundImage: `url('/img/8planet/${td.num}.svg')`}}></div>
                                 <div className="content">
                                     <h3>{td.planet}</h3>
@@ -118,6 +119,22 @@ const Wrapper = Styled.div`
     background-position: center;
     background-repeat: no-repeat;
 
+    .reportedby{
+        font-family: Exo2-lit;
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 54px;
+        color: rgba(255,255,255,0.4);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img{
+            height: 20px;
+            margin-top: 6px;
+        }
+
+    }
     .regular{
         border: none;
         background: rgba(255,255,255,0.2);
@@ -202,7 +219,7 @@ const Wrapper = Styled.div`
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
-        margin: 56px 0;
+        margin: 56px 0 24px 0;
         
         .group4{
             display: flex;

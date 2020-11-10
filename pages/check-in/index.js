@@ -28,7 +28,7 @@ const CheckIn = () => {
     }, [])    
 
     
-    const closePopUp = (e) => {
+    const closePopUp = () => {
         setisPopUp(false)
         setkode("")
         setisSucceed("netral")
@@ -101,9 +101,9 @@ const CheckIn = () => {
                 <h5>Diskusikan persiapanmu dengan team dan lakukan check-in dengan mengisi form dibawah maksimal tanggal 11 Nov</h5>
                 <form onSubmit={(e) => openPopUp(e)}>
                     <div className="each-input">
-                        <label for="planet">NAMA PLANET</label>
-                        <select value={planet} required name="planet" id="" onChange={(e) => setplanet(e.target.value)}>
-                            <option disabled selected value="">PILIH TEAM</option>
+                        <label hmtlFor="planet">NAMA PLANET</label>
+                        <select value={planet} defaultValue="" required name="planet" id="" onChange={(e) => setplanet(e.target.value)}>
+                            <option disabled value="">PILIH TEAM</option>
                             <option disabled={availPlanet.includes('merkurius')} value="merkurius">MERKURIUS {availPlanet.includes('merkurius') ? " [ CHECKED-IN ]": ""}</option>
                             <option disabled={availPlanet.includes('venus')} value="venus">VENUS {availPlanet.includes('venus') ? " [ CHECKED-IN ]": ""}</option>
                             <option disabled={availPlanet.includes('mars')} value="mars">MARS {availPlanet.includes('mars') ? " [ CHECKED-IN ]": ""}</option>
@@ -115,19 +115,19 @@ const CheckIn = () => {
                         </select>
                     </div>
                     <div className="each-input" placeholder="Gabungan kata lucu dari nama planetmu">
-                        <label for="singkatanPlanet">SINGKATAN</label>
+                        <label hmtlFor="singkatanPlanet">SINGKATAN</label>
                         <input placeholder="Singkatan lucu nama planetmu" value={singkatanPlanet} required type="text" name="singkatanPlanet" onChange={(e) => setsingkatanPlanet(e.target.value)}/>
                     </div>
                     <div className="each-input">
-                        <label for="roket">NAMA ROKET</label>
+                        <label hmtlFor="roket">NAMA ROKET</label>
                         <input placeholder="Nama ide projekmu" value={roket} required type="text" name="roket" onChange={(e) => setroket(e.target.value)}/>
                     </div>
                     <div className="each-input">
-                        <label for="deskripsi">DESKRIPSI ROKET</label>
+                        <label hmtlFor="deskripsi">DESKRIPSI ROKET</label>
                         <textarea placeholder="Penjelasan singkat idemu" value={deskripsi} required name="deskripsi" id="" cols="30" rows="4" onChange={(e) => setdeskripsi(e.target.value)}></textarea>
                     </div>
                     <div className="each-input">
-                        <label for="room">GMEET ROOM</label>
+                        <label hmtlFor="room">GMEET ROOM</label>
                         <input placeholder="Link gmeet team kamu" value={room} required type="text" name="room" onChange={(e) => setroom(e.target.value)}/>
                     </div>
                     <div className="button">

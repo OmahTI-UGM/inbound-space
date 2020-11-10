@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Styled from '@emotion/styled'
 import { db } from '../../lib/db'
 import OtpInput from 'react-otp-input'
@@ -17,14 +17,16 @@ const CheckIn = () => {
     
     const [kode, setkode] = useState("")
 
-    
-    db.collection('teamdata').get().then(function(querySnapshot) {
-        let available = []
-        querySnapshot.forEach(function(doc) {     
-            available.push(doc.id)            
-        })
-        setavailPlanet(available)
-    });
+    useEffect(() => {
+        db.collection('teamdata').get().then(function(querySnapshot) {
+            let available = []
+            querySnapshot.forEach(function(doc) {     
+                available.push(doc.id)            
+            })
+            setavailPlanet(available)
+            console.log("read1")
+        });
+    }, [])    
 
     
     const closePopUp = (e) => {
@@ -61,7 +63,8 @@ const CheckIn = () => {
     }
     
     const submitCheckIn = async () => {        
-        db.collection('kodeluncur').doc(planet).get().then(function(doc) {    
+        db.collection('kodeluncur').doc(planet).get().then(function(doc) { 
+            console.log("read2")   
            const matchCode = doc.data().kode;
 
             if(kode.toString() == matchCode){

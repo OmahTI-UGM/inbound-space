@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Styled from '@emotion/styled'
 
 import { db } from '../../lib/db'
@@ -8,23 +8,28 @@ const Index = () => {
     const [teamdata, setteamdata] = useState([]);
     const [prog, setprog] = useState([]);
 
-    db.collection('teamdata').orderBy('num', 'asc').get().then(function(querySnapshot) {
-        let available = []
-        let data = []
-        querySnapshot.forEach(function(doc) {     
-            available.push(doc.id)     
-            data.push(doc.data())       
-        })
-        setcheckedInList(available)
-        setteamdata(data)
-    });
-    db.collection('prog').orderBy('num', 'asc').get().then(function(querySnapshot) {
-        let progdata = []
-        querySnapshot.forEach(function(doc) {
-            progdata.push(doc.data().progress)
-        })
-        setprog(progdata)
-    });
+    useEffect(() => {
+        db.collection('teamdata').orderBy('num', 'asc').get().then(function(querySnapshot) {
+            let available = []
+            let data = []
+            querySnapshot.forEach(function(doc) {     
+                available.push(doc.id)     
+                data.push(doc.data())       
+            })
+            setcheckedInList(available)
+            setteamdata(data)
+            console.log("readP1")
+        });
+        
+        db.collection('prog').orderBy('num', 'asc').get().then(function(querySnapshot) {
+            let progdata = []
+            querySnapshot.forEach(function(doc) {
+                progdata.push(doc.data().progress)
+            })
+            setprog(progdata)
+            console.log("readP2")
+        });
+    }, [])
     
     return (
         <Wrapper>
@@ -165,6 +170,7 @@ const Wrapper = Styled.div`
         justify-content: flex-start;
         align-items: center;
         margin: 24px 0;
+        padding-right: 12px;
 
         .planetimg{
             margin: 24px;
@@ -187,7 +193,6 @@ const Wrapper = Styled.div`
         width: 85%;
         max-width: 800px;
         min-width: 320px;
-        height: 200px;
         padding-top: 32px;
     }
     .samar{

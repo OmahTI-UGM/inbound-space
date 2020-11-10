@@ -5,8 +5,10 @@ import { db } from '../../lib/db'
     
 const Index = () => {
     const [checkedInList, setcheckedInList] = useState([])
-    const [teamdata, setteamdata] = useState([]);
-    const [prog, setprog] = useState([]);
+    const [teamdata, setteamdata] = useState([])
+    const [prog, setprog] = useState([])
+
+    const warnaplanet = ["#44A6E7", "#EDBA3A", "#F0A036", "#0BD6D6", "#F2A15D", "#2DC6E0", "#02A6DE", "#F562DC"]
 
     useEffect(() => {
         db.collection('teamdata').orderBy('num', 'asc').get().then(function(querySnapshot) {
@@ -88,7 +90,7 @@ const Index = () => {
                             <div className="each-detail" key={i}>
                                 <div className="planetimg" style={{backgroundImage: `url('/img/8planet/${td.num}.svg')`}}></div>
                                 <div className="content">
-                                    <h3>{td.planet}</h3>
+                                    <h3 style={{color: warnaplanet[i]}}>{td.planet}</h3>
                                     <p className="team">TIM {td.singkatanPlanet}</p>
                                     <p className="regular">{td.roket}</p>
                                 </div>
@@ -121,6 +123,7 @@ const Wrapper = Styled.div`
 
     .team{
         text-transform: none !important;
+        font-family: Exo2-lit;
     }
 
     .reportedby{
@@ -191,6 +194,7 @@ const Wrapper = Styled.div`
         justify-content: flex-start;
         align-items: center;
         margin: 24px 0;
+        padding: 6px 0;
         padding-right: 12px;
 
         .planetimg{

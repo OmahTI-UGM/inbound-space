@@ -79,7 +79,7 @@ const Index = () => {
                         </div>
                     </div>
                 </div>
-                <p className="reportedby"><img src="https://img.icons8.com/pastel-glyph/64/ffffff/info--v1.png"/>&ensp;presentase progress dilaporkan oleh mantan astro</p>
+                <p className="reportedby"><img src="https://img.icons8.com/pastel-glyph/64/ffffff/info--v1.png"/>presentase progress dilaporkan oleh mantan astro</p>
 
                 <div className="prog-detail">
                     <h2>DETAILS</h2>
@@ -121,17 +121,19 @@ const Wrapper = Styled.div`
 
     .reportedby{
         font-family: Exo2-lit;
-        text-align: center;
+        text-align: left;
         margin-top: 0;
         margin-bottom: 54px;
         color: rgba(255,255,255,0.4);
         display: flex;
         justify-content: center;
         align-items: center;
-
+        
         img{
             height: 20px;
             margin-top: 6px;
+            margin-right: 12px;
+            
         }
 
     }

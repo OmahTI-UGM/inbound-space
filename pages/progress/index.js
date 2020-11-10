@@ -89,7 +89,7 @@ const Index = () => {
                                 <div className="planetimg" style={{backgroundImage: `url('/img/8planet/${td.num}.svg')`}}></div>
                                 <div className="content">
                                     <h3>{td.planet}</h3>
-                                    <p>{td.singkatanPlanet}</p>
+                                    <p className="team">TIM {td.singkatanPlanet}</p>
                                     <p className="regular">{td.roket}</p>
                                 </div>
                             </div>
@@ -118,6 +118,10 @@ const Wrapper = Styled.div`
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+
+    .team{
+        text-transform: none !important;
+    }
 
     .reportedby{
         font-family: Exo2-lit;
